@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<!-- Hibernate SessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/goodhope/goldselling/domain/User.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/Role.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/Authority.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/PurchaseAttemp.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/Order.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/Country.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/Currency.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/Server.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/Vendor.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/StorageList.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/OrderRecord.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/OrderPicture.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/PaypalRecord.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/MoneybookersRecord.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/InformBackoffice.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/TimerWatch.hbm.xml</value>
+				<value>com/goodhope/goldselling/domain/FailReason.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<!-- <prop key="hibernate.query.substitutions">true 1, false 0</prop> -->
+				<prop key="hibernate.show_sql">false</prop>
+			</props>
+		</property>
+
+	</bean>
+
+	<!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+
+</beans>

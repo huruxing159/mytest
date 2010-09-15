@@ -1,0 +1,1 @@
+delete from databasechangelog where id in('beta2/purchase_attemps.xml','beta2/purchase_attemps-rollback.xml') ;

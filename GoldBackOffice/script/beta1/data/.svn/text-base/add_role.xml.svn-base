@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/NewCrawler/dbchangelog-1.9.xsd">
+
+	<changeSet author="lbl/hrx" id="beta1/data/add_role.xml">
+
+		<insert tableName="roles">
+			<column name="id" value="1"></column>
+			<column name="rolename" value="ROLE_ADMINISTRATOR"></column>
+			<column name="roleshowname" value="管理员"></column>
+			<column name="createtime" value="2010-07-13 10:00:00"></column>
+		</insert>
+
+		<insert tableName="roles">
+			<column name="id" value="2"></column>
+			<column name="rolename" value="ROLE_OPERATOR"></column>
+			<column name="roleshowname" value="运营"></column>
+			<column name="createtime" value="2010-07-13 10:00:00"></column>
+		</insert>
+
+		<insert tableName="roles">
+			<column name="id" value="3"></column>
+			<column name="rolename" value="ROLE_CUSTOMER_SERVICE"></column>
+			<column name="roleshowname" value="客服"></column>
+			<column name="createtime" value="2010-07-13 10:00:00"></column>
+		</insert>
+
+		<insert tableName="roles">
+			<column name="id" value="4"></column>
+			<column name="rolename" value="ROLE_VENDOR"></column>
+			<column name="roleshowname" value="供货商"></column>
+			<column name="createtime" value="2010-07-13 10:00:00"></column>
+		</insert>
+		<insert tableName="roles">
+			<column name="id" value="5"></column>
+			<column name="rolename" value="ROLE_FINANCIAL"></column>
+			<column name="roleshowname" value="财务"></column>
+			<column name="createtime" value="2010-07-13 10:00:00"></column>
+		</insert>
+
+	</changeSet>
+
+</databaseChangeLog>

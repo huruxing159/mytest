@@ -1,0 +1,41 @@
+10
+
+dir
+1184
+svn://192.168.16.30/oa/trunk/GoldBackOffice/lib
+svn://192.168.16.30/oa
+
+
+
+2010-08-03T08:24:41.000206Z
+938
+pair48
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+72538d8e-ff4f-0410-aad9-bc6707da5143
+
+
+
+
+
+
+0
+
+src
+dir
+
+test
+dir
+

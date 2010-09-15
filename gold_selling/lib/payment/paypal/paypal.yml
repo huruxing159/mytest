@@ -1,0 +1,33 @@
+# # specify the 3-token values.    
+# PAYPALUSER: seller_1274936735_biz_api1.126.com
+# PWD:  2S2E9J4ZXXPSFX5Z
+# SIGNATURE: AomFaGmpw84ApMZWHUWSro7a5OIPAspeFJXZ3lX.ogNbEIRt4vKt5vRQ
+# PAYPAL_URL: https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&useraction=commit&token=      
+# 
+#    # @@endpoints 
+# SERVER:  api-3t.sandbox.paypal.com
+# SERVICE: /nvp/
+# # Information needed for tracking purposes.   @@client_info   
+# VERSION: 63.0
+# SOURCE: PayPalRubySDKV1.2.0
+############################################################################
+
+
+
+
+# Information needed for tracking purposes.   @@client_info   
+VERSION: 63.0
+SOURCE: PayPalRubySDKV1.2.0
+
+# PAYPALUSER: huruxing159_api1.sina.com
+# PWD:  JL2C5N35M78RYAN8
+# SIGNATURE: AbvlVO1CyWU3rP3r1hI3iS69OVFlA9mUX.eN4TMTjixik6EEo5rVf7Iz
+
+PAYPALUSER: payments_api1.instantwowgoldmine.com
+PWD:  	HNWZXUD6CYWYT6KR
+SIGNATURE: AvP4xYH79RHp4sQ5fMgOAZf5hgQHAkEunYgbtxfgARKbXWlQKAMbyx.6
+
+SERVER:  api-3t.paypal.com
+SERVICE: /nvp/
+
+PAYPAL_URL: https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&useraction=commit&token=

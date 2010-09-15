@@ -1,0 +1,201 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title Instant WoW Goldmine
+    %meta{:content => "IE=EmulateIE7", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %link{:href => "stylesheets/site.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "stylesheets/jquery.popup.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "stylesheets/jquery.autocomplete.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "stylesheets/mypopup.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "js/jquery.js" ,:type => "text/javascript"}
+    %script{:src => "js/jquery.bgiframe.min.js", :type => "text/javascript"}
+    %script{:src => "js/jquery.ajaxQueue.js", :type => "text/javascript"}
+    %script{:src => "js/thickbox-compressed.js", :type => "text/javascript"}
+    %script{:src => "js/jquery.autocomplete.js", :type => "text/javascript"}
+    %script{:src => "js/dw_event.js", :type => "text/javascript"}
+    %script{:src => "js/dw_viewport.js", :type => "text/javascript"}
+    %script{:src => "js/dw_tooltip.js", :type => "text/javascript"}
+    %script{:src => "js/dw_tooltip_aux.js", :type => "text/javascript"}
+    %script{:src => "js/jquery.popup.js", :type => "text/javascript"}
+    %script{:src => "js/pricelist-moneytype.js", :type => "text/javascript"}
+    %script{:src => "js/google_user_interact.js", :type => "text/javascript"}
+    
+   
+    :javascript
+      $(document).ready(function(){
+     
+      checkout_validate();
+      $("#server").attr('disabled', 'disabled'); 
+      $("div.results").hide();
+      $("div.resultsloading").append("<img src='images/loading.gif'/>");
+      $("div.resultsloading").hide();
+      $("div.popuplayer").hide();
+      if ($.browser.msie) {
+        $("input[@name='region']").click(function() {
+          this.blur();
+          this.focus();
+        });
+        $("input[@name='faction']").click(function() {
+          this.blur();
+          this.focus();
+        });
+        $("input[@name='trade_method']").click(function() {
+          this.blur();
+          this.focus();
+        });
+      }
+      
+      $("input[@name='trade_method']").change(function() {
+        if($("input[@name='trade_method']:checked").val() == 'Auction House Buyout'){
+          $('#AuctionItemName').show();
+        }else{
+          $('#AuctionItemName').hide();
+        }
+      });
+      
+      $("input[@name='region']").change(function(){
+        getserverList();
+      });
+      $("input[@name='faction']").change(function(){
+        getserverList();
+      });
+      getserverList();
+      });
+    
+     
+
+    :javascript
+      dw_Tooltip.content_vars = dw_Tooltip.content_vars = {
+        L4: '<img src="images/characther_bubble.gif" />'
+      }
+  %body
+    #wrapper
+      %a#logo{:href => "/", :title => "Home"}
+        %img{:alt => "Instant WOW Gold Online", :height => "107", :src => "images/logo.png", :width => "169"}/
+      %ul#menu
+        %li
+          %a.active{:href => "/"} Buy WoW Gold
+        %li
+          %a{:href => "/why_trust_us"} Why Trust Us?
+        %li
+          %a{:href => "/contact_us"} Contact Us
+      %br{:style => "clear:both"}/
+      #main
+        #heading
+          %h1 We are today’s leading provider of gold to players of World of Warcraft.
+        #header
+          Over the years, we have been trusted by thousands of Warcraft players&nbsp;in Europe and in the United States who purchase their gold from us and enable themselves to concentrate on the parts of the game that they actually enjoy playing! Unlike other gold selling websites, our gamers use totally&nbsp;legitimate in-game techniques to earn the gold that we sell, so you can always be assured that dealing with us is safe and secure.
+          %a{:href => "why-trust-us.html"} Find out more »
+        %h2 Buy WoW Gold Now:
+        %form{:method => "post", :action => "/buy",:id=>"checkoutform"}
+          %fieldset
+            %h3
+              1. Select You Order
+            .field.inline
+              .title Region:
+              .input
+                %label.inline
+                  %input{:name => "region", :type => "radio",:value=>'EU'}/
+                  Europe
+                %label.inline
+                  %input{:name => "region", :type => "radio",:value=>"US"}/
+                  USA
+            .field.inline
+              .title Choose Your Faction:
+              .input
+                %label.inline
+                  %input{:name => "faction", :type => "radio",:value=>'Alliance'}/
+                  Alliance
+                %label.inline
+                  %input{:name => "faction", :type => "radio",:value=>'Horde'}/
+                  Horde
+            .field.inline
+              .title
+                %label{:for => "server"} Select Your Server:
+              .input
+                .server-wrap
+                  %input#server.text{:size => "10", :type => "text", :value => "Please Select Region and Faction First",:name => "server"}/
+            .popuplayer
+              #search
+              .popupbottom
+            .resultsloading     
+            .results
+            
+          %fieldset
+            %h3
+              2. Delivery and Payment Information
+            .set-a
+              .field2
+                .title
+                  %label{:for => "character-name"}
+                    Your Character Name:
+                    %img#questionmark.showTip.L4{:alt => "question mark", :height => "14", :name => "questionmark", :src => "images/characther-question-mark.png", :width => "14"}/
+                .input
+                  %input#character-name.text{:type => "text",:name=> "character"}/
+                
+                .input#AuctionItemName{:style=>"display:none;"} 
+                  %br/
+                  .title
+                    Auction Item Name(The Same Item):
+                  %input.text{:type => "text",:name=> "auction_item_name" }/
+            .set-b
+              .field2
+                .title
+                  Your Trade Method:
+                .input
+                  %label
+                    %input{:name => "trade_method", :type => "radio",:value=> 'In-game mail'}/
+                    In-game mail
+                  %label
+                    %input{:name => "trade_method", :type => "radio",:value=>'Face to face trade'}/
+                    Face to face trade
+                  %label
+                    %input{:name => "trade_method", :type => "radio",:value=>'Auction House Buyout'}/
+                    Auction House Buyout
+                
+            .set-c
+              .field
+                .title Choose Payment Method:
+              .pay-box
+                %label{:for => "paypal"}
+                  %input#paypal{:name => "payment_method", :type => "radio",:value=> 'Paypal'}/
+                  Paypal
+                  %br/
+                %img{:src => "images/paypal.png"}/
+              .pay-box
+                %label.inline
+                  %input#moneybookers{:name => "payment_method", :type => "radio",:value=>'Moneybookers'}/
+                  Moneybookers.com
+                  %br/
+                %img{:src => "images/moneybookers.png"}/
+              .pay-box
+                %label{:for => "credit-card"}
+                  %input#credit-card{:name => "payment_method", :type => "radio",:value=>'CreditCard'}/
+                  Credit card
+                  %br/
+                %img{:src => "images/credit-card.png"}/
+          %input.checkout{:type => "button", :value => ""}/
+          .checkouting
+      #side
+        .side-a
+          %h3 Got any questions?
+          Why not chat to a member of our LiveChat team right now? They can immediately answer any questions or concerns you have.
+          =haml :livechat
+        .side-b
+          .top
+          %ul
+            %li.safe
+              %h4 WoW Account Safe Guaranteed
+              %p We use totally legal in-game techniques to earn the gold we sell. This keeps your account safe and secure.
+            %li.instant
+              %h4 Instant Delivery
+              %p Our comprehensive stock control system allows us to guarantee the fastest delivery times available.
+            %li.secure
+              %h4 Secure Payment
+              %p We use industry standard payment systems like PayPal which ensure your details are safe and secure.
+            %li.save
+              %h4 Lowest Price
+              %p The best way for us to make more money is if you come back! That’s why we guarantee low prices and high security.
+    =haml :footer
+      

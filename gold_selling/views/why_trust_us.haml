@@ -1,0 +1,60 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title Instant WoW Goldmine
+    %meta{:content => "IE=EmulateIE7", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %link{:href => "stylesheets/site.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "js/google_user_interact.js", :type => "text/javascript"}
+  %body.why-trust-us
+    #wrapper
+      %a#logo{:href => "/", :title => "Home"}
+        %img{:alt => "Instant WoW Goldmine", :src => "images/logo.png"}/
+      %ul#menu
+        %li
+          %a{:href => "/"} Buy WoW Gold
+        %li
+          %a.active{:href => "#"} Why Trust Us?
+        %li
+          %a{:href => "/contact_us"} Contact Us
+      %br{:style => "clear:both"}/
+      #main
+        %h1 Why Trust Us?
+        %p
+          We are committed to creating a service that enhances your gaming experience. We take all the necessary steps to ensure that buying gold from this site never causes any undesired effects for gamers. Here are some questions that people sometimes ask about our service:
+        %h3 Will my account get banned if I buy gold from this site?
+        %p No! We use entirely legitimate in-game techniques to earn the gold we sell. We don’t use bots or other automated systems.
+        %h3 How do your players earn the gold you sell?
+        %p
+          Well, we can’t give away all our secrets, but our players make gold in the same way that you do! They do dailies across a lot of different characters; they buy and sell items on the Auction House, and they grind areas that give decent drops. They are just
+          %em very
+          good at it!
+        %h3 Then why do I hear about accounts being banned by Blizzard?
+        %p Almost all account bans occur when a gold seller uses automated bots to earn their gold.&nbsp; Even then, it is usually the seller’s account that gets banned – not the buyer's.We have a team of dedicated players who earn our gold, so your account is never involved in the kind of cheating that will result in a ban.
+        %h3 Will you spam me in-game?
+        %p Absolutely not! We are here to make your gaming experience better, not worse. We think that the best way to get you back to our site is to just leave you alone and let you get on with it!
+        %h3 O RLY?
+        %p Ya RLY! The owners of this site actually play WoW and we know how irritating in-game spam is. We highly recommend the use of an add-on called “spammenot” by the way!
+        %h3 Are my personal details safe?
+        %p Of course! We use market leaders in payment systems like PayPal. This ensures your details are as safe and secure as with any other online purchase.
+      #side
+        .side-a
+          %h3 Got any questions?
+          Why not chat to a member of our LiveChat team right now? They can immediately answer any questions or concerns you have.
+          =haml :livechat
+        .side-b
+          .top
+          %ul
+            %li.safe
+              %h4 WoW Account Safe Guaranteed
+              %p We use totally legal in-game techniques to earn the gold we sell. This keeps your account safe and secure.
+            %li.instant
+              %h4 Instant Delivery
+              %p Our comprehensive stock control system allows us to guarantee the fastest delivery times available.
+            %li.secure
+              %h4 Secure Payment
+              %p We use industry standard payment systems like PayPal which ensure your details are safe and secure.
+            %li.save
+              %h4 Lowest Price
+              %p The best way for us to make more money is if you come back! That’s why we guarantee low prices and high security.
+    =haml :footer

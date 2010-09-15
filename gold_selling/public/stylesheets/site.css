@@ -1,0 +1,521 @@
+* {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+html {
+	font-size: 62.5%;
+	display: inline;
+}
+body, input, textarea, select {
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	color: #333;
+}
+input, textarea {
+	padding: 3px;
+}
+
+body {
+	font-size: 1.5em;
+	background: #300 url(../images/body-bg.png) repeat-x;
+}
+h1, h2 {
+	color: #630;
+	font-size: 1.2em;
+}
+h1 {
+	margin-top: 20px;
+}
+h3 {
+	font-size: 1em;
+	margin-top: 30px;
+	font-weight: bold;
+	color: #333;
+}
+a {
+	color: #0099ff;
+}
+b {
+	color: #333;
+}
+#wrapper {
+	width: 933px;
+	margin: 0 auto;
+	background-color: #fff;
+	overflow: hidden;
+	background: #fff url(../images/wrapper-bottom-bg.png) no-repeat -1px bottom;
+}
+#logo {
+	float: left;
+	display: inline;
+	margin-left: 57px;
+
+}
+#menu {
+	float: left;
+	display: inline;
+	width: 606px;
+	padding-left: 50px;
+	margin-left: 25px;
+	margin-top: 60px;
+	border-bottom: 2px solid #d8ac35;
+	overflow: hidden;
+}
+#menu li {
+	list-style-type: none;
+	float: left;
+	display: inline;
+	margin-left: 10px;
+}
+#menu li a {
+	display: block;
+	width: 138px;
+	height: 23px;
+	padding-top: 10px;
+	text-align: center;
+	background-color: #f6f6d1;
+	color: #333;
+	text-decoration: none;
+	background: url(../images/tab.png);
+	font-weight: bold;
+}
+#menu li a:hover, #menu li a.active {
+	background-position: 0 -33px;
+}
+#main {
+	float: left;
+	display: inline;
+	width: 636px;
+	margin-top: 20px;
+	margin-left: 27px;
+	clear: left;
+}
+.why-trust-us #wrapper #main {
+    float: left;
+	display: inline;
+	clear: both;
+	margin-left: 27px;
+	width: 605px;
+	margin-right: 20px;
+}
+.contact-us #wrapper #main {
+    float: left;
+	display: inline;
+	clear: both;
+	margin-left: 27px;
+	width: 566px;
+	margin-right: 20px;
+}
+#main h2 {
+	margin-top: -10px;
+}
+#header {
+	background: url(../images/gold.png) no-repeat right top;
+	padding-right: 200px;
+	padding-top: 14px;
+	padding-bottom: 53px;
+}
+#header h1 {
+	display: inline;	
+}
+#side {
+	float: right;
+	display: inline;
+	margin-right: 24px;
+	width: 215px;
+	position: relative;
+}
+.side-a, .side-b {
+	padding: 20px;
+	font-weight: normal;	
+}
+.side-a {
+	background: url(../images/side-a-bottom-bg.png) no-repeat left bottom;
+	font-size: 0.9em;
+	font-weight: normal;	
+}
+
+
+.side-a h3 {
+	color: #333;
+	margin: -20px -20px 0;
+	padding: 20px 20px 0;
+	background:  url(../images/side-a-top-bg.png) no-repeat left top;
+	font-weight: bold;
+	font-size: 1em;
+}
+.side-b {
+	background: url(../images/side-b-bottom-bg.gif) no-repeat left bottom;
+	color: #fff;
+	margin-top: 10px;
+	margin-bottom: 30px;
+	padding-bottom: 40px;
+}
+.side-b p {
+	padding-top: 6px;
+	padding-left: 3px;
+	font-weight: normal;
+}
+.side-b .top {
+	margin: -20px -20px 0;
+	padding: 20px 20px 0;
+	background:  url(../images/side-b-top-bg.gif) no-repeat left top;
+}
+.side-b h4 {
+	
+	color: #ffff93;
+	font-size: 1.1em;
+}
+.side-b li {
+	font-size: .9em;
+}
+form h3 {
+	display: block;
+	background: #f2ecdf;
+	padding: 5px 15px;
+	width: 600px;
+	margin-top: 5px;
+	margin-left: -5px;
+	font-size: 0.9em;
+	font-weight: bold;
+}
+.server-wrap {
+	width: 306px;
+	height: 37px;
+	padding-left: 10px;
+	padding-top: 3px;
+	background-image: url(../images/server-bg-big.png);
+	background-repeat: no-repeat;
+	background-position: 5px 5px;
+	margin-top: -5px;
+}
+#server {
+	background: transparent;
+	width: 300px;
+	height: 30px;
+	color: #666;
+	border: 0;
+	font-weight: normal;
+	text-align: left;
+	margin-left: 10px;
+	font-size: 1.2em;
+}
+
+.chat {
+	height: 38px;
+	width:200px;
+	display: block;
+	margin-left: -4px;
+	margin-top: 5px;
+	
+}
+#comm100_ButtonImage{
+	display:none;
+}
+
+.chat a{
+	background-image: url(../images/button_live_chat.png);
+}
+
+.chat a:hover{
+	background-position: 0 -41px;
+}
+
+/* form */
+
+input.text {
+	border: 1px solid #999;
+	width: 200px;
+}
+input.onlynumber_text{
+	border: 1px solid #999;
+	width: 100px;
+}
+.field {
+	overflow: hidden;
+	padding: 5px;
+	margin-top: 10px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	margin-left: 5px;
+	width: 440px;
+	font-size: 0.9em;
+}
+.field2 {
+	overflow: hidden;
+	padding: 5px;
+	margin-top: 10px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	margin-left: 5px;
+	width: 210px;
+	font-size: 0.9em;
+}
+.field3 {
+	overflow: hidden;
+	padding: 5px;
+	margin-top: 10px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	margin-left: 5px;
+	width: 330px;
+	font-size: 0.9em;
+	font-weight: bold;
+}
+
+.title {
+	font-weight: bold;
+	padding-bottom: 5px;
+	font-size: 0.9em;
+	padding-right: 10px;
+}
+.inline .title {
+	float: left;
+	width: 140px;
+	font-size: 0.9em;
+}
+.input {
+	float: left;
+	font-size: 0.9em;
+	margin-right: 5px;
+	margin-bottom: 2px;
+	width: 220px;
+	font-weight: normal;
+}
+.set-b .inline .title {
+	font-weight: normal;
+	width: 95px;
+}
+
+form label {
+	display: block;
+	padding-bottom: 4px;
+}
+
+form label.inline {
+	display: inline;
+	margin-right: 45px;
+}
+
+/* */
+
+.set-a {
+	float: left;
+	display: inline;
+	width: 233px;
+	margin-top: 12px;
+}
+.set-b {
+	float: left;
+	display: inline;
+	width: 200px;
+	padding-left: 20px;
+	margin-top: 12px;
+	margin-right: 0;
+	margin-bottom: 13px;
+	margin-left: 5px;
+}
+
+.set-c {
+	float: left;
+	display: inline;
+	border-top: 2px solid #d2d0d0;
+	width: 620px;
+	padding-top: 16px;
+}
+.pay-box {
+	float: left;
+	display: inline;
+	margin: 10px 30px;
+	text-align: center;
+	font-size: 0.8em;
+}
+.pay-box img {
+	margin-top: 7px;
+}
+input.checkout {
+	width: 207px;
+	height: 35px;
+	margin-bottom: 20px;
+	background: url(../images/checkout.png) no-repeat;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	margin-left: 190px;
+}
+input:hover.checkout {
+	background-position: 0 -35px;
+}
+
+.side-b li {
+	list-style-type: none;
+	margin-top: 10px;
+}
+.side-b h4 {
+	padding-top: 5px;
+	padding-left: 40px;
+}
+.safe h4 {
+	padding-top: 8px;
+	background: url(../images/safe.png) no-repeat;
+}
+.instant h4 {
+	padding-top: 20px;
+	background: url(../images/instant.png) no-repeat;
+}
+.secure h4 {
+	padding-top: 20px;
+	background: url(../images/secure.png) no-repeat;
+}
+.save h4 {
+	padding-top: 20px;
+	background-image: url(../images/save.png);
+	background-repeat: no-repeat;
+}
+
+.results-a {
+	float: left;
+	display: inline;
+	width: 380px;
+}
+
+.results-b {
+	float: left;
+	display: inline;
+	width: 220px;
+	margin-left: 25px;
+	margin-top: -135px;
+}
+.results-b select {
+	border: 1px solid #ccc;
+}
+.results-b p {
+	margin-top: 30px;
+	font-weight: bold;
+}
+.right {
+	float: right;
+	font-size: .7em;
+	display: block;
+	clear: both;
+}
+.right b {
+	color: #000;
+	font-size: 1.4em;
+	margin-left: 5px;
+}
+.right a {
+	font-size: 1.4em;
+	margin-left: 5px;
+	font-weight: normal;
+}
+table {
+	width: 100%;
+	text-align: right;
+	border-collapse: collapse;
+	float: left;
+}
+th {
+	background-color: #f2ece0;
+	padding: 5px;
+	font-size: 0.75em;
+}
+td {
+	padding: 5px;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #CCC;
+}
+td.now {
+	color: #ff6600;
+	font-weight: bold;
+}
+.note {
+	border: 1px solid #b3e6ed;
+	background-color: #efefca;
+	text-align: center;
+	margin-bottom: 79px;
+	padding: 10px;
+	width: 160px;
+	margin-left: 10px;
+}
+.note b {
+	display: block;
+	
+}
+.results-b b {
+	color: #000;
+}
+.results-b select {
+	margin-right: 7px;
+}
+.results-b .field {
+	margin-top: 25px;
+}
+#amount {
+	width: 120px;
+}
+#price {
+	width: 40px;
+}
+#customprice {
+	width: 40px;
+}
+big {
+	font-size: 1.5em;
+	display: block;
+	font-weight: bold;
+}
+.results-b .inline .title {
+	width: 182px;
+	font-weight: normal;
+	padding-top:5px;
+	font-size: .95em;
+}
+#questionmark {
+	z-index: 10;
+	left: 170px;
+	top: 630px;
+	margin-top: -5px;
+	margin-left: 10px;
+}
+
+#wrapper #main form fieldset .set-a .field .input label {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+div#tipDiv {
+   margin-top: -40px;
+}
+
+#wrapper #main form fieldset .set-b .field3 .title label {
+	width: 90px;
+	font-weight: normal;
+}
+#wrapper #main form fieldset .set-b .field3 .title {
+	font-weight: normal;
+	width: 90px;
+	float: left;
+}
+#wrapper #main form fieldset .results .results-b .field2 .input.inline {
+	width: 55px;
+}
+.calculator {
+	margin-left: 20px;
+}
+#wrapper #main form fieldset .results .results-b .field {
+	margin-top: -1px;
+	margin-bottom: -1px;
+	
+}
+
+#footer{
+	margin:0 auto;
+	width:900px; 
+	text-align:right;
+	color:#ffd;
+	font-size:11px;
+	padding:10px 0 50px 0;
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.goodhope.goldselling.domain">
+	<class name="Server" table="servers">
+
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">goldselling_id_sequence</param>
+			</generator>
+		</id>
+		<property name="name"></property>
+		<property name="faction"></property>
+		<property name="created_at"></property>
+		<property name="updated_at"></property>
+		<property name="priceLimit"></property>
+		<property name="amountLimit"></property>
+		<property name="history_unit_price"></property>
+		<property name="current_unit_price"></property>
+		<property name="history_price_strategy"></property>
+		<property name="current_price_strategy"></property>
+		<many-to-one name="country" class="Country" column="country_id" lazy="false"></many-to-one>
+		<set name="storageLists" order-by="vendorid">
+			<key column="serverid"></key>
+			<one-to-many class="StorageList"  />
+		</set>
+	</class>
+
+
+</hibernate-mapping>

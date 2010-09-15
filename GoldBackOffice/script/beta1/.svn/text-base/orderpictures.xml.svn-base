@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/GoldBackOffice/script/dbchangelog-1.9.xsd">
+
+
+	<changeSet author="lbl/hrx" id="beta1/orderpictures.xml">
+
+		<createTable tableName="orderpictures">
+
+			<column name="id" type="numeric(20)">
+				<constraints primaryKey="true" />
+			</column>
+
+			<column name="orderid" type="numeric(20)"></column>
+			<column name="location" type="varchar(255)"></column>
+		</createTable>
+	</changeSet>
+
+</databaseChangeLog>

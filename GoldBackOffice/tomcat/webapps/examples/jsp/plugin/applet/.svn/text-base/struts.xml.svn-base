@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.custom.i18n.resources" value="messages" />
+	<constant name="struts.multipart.maxSize" value="102400000" />
+	<package name="default" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor-stack name="defaultStackWithoutWorkFlow">
+				<interceptor-ref name="exception" />
+				<interceptor-ref name="alias" />
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="i18n" />
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="debugging" />
+				<interceptor-ref name="scopedModelDriven" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="fileUpload" />
+				<interceptor-ref name="checkbox" />
+				<interceptor-ref name="multiselect" />
+				<interceptor-ref name="staticParams" />
+				<interceptor-ref name="actionMappingParams" />
+				<interceptor-ref name="params">
+					<param name="excludeParams">dojo\..*,^struts\..*</param>
+				</interceptor-ref>
+				<interceptor-ref name="conversionError" />
+				<interceptor-ref name="validation">
+					<param name="excludeMethods">input,back,cancel,browse</param>
+				</interceptor-ref>
+
+			</interceptor-stack>
+
+			<interceptor-stack name="allStack">
+				<interceptor-ref name="exceptionLogInterceptor"></interceptor-ref>
+				<interceptor-ref name="userAwareInterceptor"></interceptor-ref>
+				<interceptor-ref name="locationAwareInterceptor"></interceptor-ref>
+				<interceptor-ref name="menuAwareInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="transactionInterceptor"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor-stack name="allStackWithoutWorkFlow">
+				<interceptor-ref name="exceptionLogInterceptor"></interceptor-ref>
+				<interceptor-ref name="userAwareInterceptor"></interceptor-ref>
+				<interceptor-ref name="locationAwareInterceptor"></interceptor-ref>
+				<interceptor-ref name="menuAwareInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStackWithoutWorkFlow"></interceptor-ref>
+				<interceptor-ref name="transactionInterceptor"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor-stack name="locationAwareStack">
+				<interceptor-ref name="exceptionLogInterceptor"></interceptor-ref>
+				<interceptor-ref name="locationAwareInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor-stack name="userAwareStack">
+				<interceptor-ref name="exceptionLogInterceptor"></interceptor-ref>
+				<interceptor-ref name="userAwareInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor-stack name="menuAwareStack">
+				<interceptor-ref name="exceptionLogInterceptor"></interceptor-ref>
+				<interceptor-ref name="menuAwareInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor name="exceptionLogInterceptor" class="com.goodhope.goldselling.web.interceptors.ExceptionLogInterceptor"></interceptor>
+			<interceptor name="userAwareInterceptor" class="com.goodhope.goldselling.web.interceptors.UserAwareInterceptor"></interceptor>
+			<interceptor name="locationAwareInterceptor" class="com.goodhope.goldselling.web.interceptors.LocationAwareInterceptor"></interceptor>
+			<interceptor name="menuAwareInterceptor" class="com.goodhope.goldselling.web.interceptors.MenuAwareInterceptor"></interceptor>
+			<interceptor name="transactionInterceptor" class="com.goodhope.goldselling.web.interceptors.SpringTransactionInterceptor"></interceptor>
+		</interceptors>
+
+		<default-action-ref name="redirect2welcome"></default-action-ref>
+
+		<global-results>
+			<result name="exception" type="freemarker">/WEB-INF/freemarker/exception.ftl</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="exception" exception="MD5EncryptionException"></exception-mapping>
+		</global-exception-mappings>
+		<action name="redirect2welcome">
+			<result type="redirectAction" name="success">afterlogin/welcome</result>
+		</action>
+		<action name="login" class="com.goodhope.goldselling.web.action.LoginAction">
+			<result type="freemarker" name="success">/WEB-INF/freemarker/login.ftl</result>
+		</action>
+
+	</package>
+
+	<!-- Add packages here -->
+
+	<package name="afterlogin" namespace="/afterlogin" extends="default">
+
+		<default-interceptor-ref name="allStack"></default-interceptor-ref>
+
+		<action name="welcome" class="com.goodhope.goldselling.web.action.WelcomeAction">
+			<result type="freemarker" name="success">/WEB-INF/freemarker/afterlogin/welcome.ftl</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="userAwareInterceptor"></interceptor-ref>
+			<interceptor-ref name="menuAwareInterceptor"></interceptor-ref>
+		</action>
+
+		<action name="logout" class="com.goodhope.goldselling.web.action.LogoutAction">
+			<result type="freemarker" name="success">/WEB-INF/freemarker/login.ftl</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+	</package>
+
+	<package name="all" namespace="/afterlogin" extends="afterlogin">
+		<action name="changePasswordInit">
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/changePassword.ftl</result>
+		</action>
+		<action name="changePassword" class="com.goodhope.goldselling.web.action.all.ChangePasswordAction">
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/changePassword.ftl</result>
+			<result name="input" type="freemarker">/WEB-INF/freemarker/afterlogin/changePassword.ftl</result>
+		</action>
+		<action name="orderDetails" class="com.goodhope.goldselling.web.action.all.OrderDetailsAction">
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/orderDetails.ftl</result>
+			<result name="input" type="freemarker">/WEB-INF/freemarker/afterlogin/orderDetails.ftl</result>
+		</action>
+	</package>
+
+	<package name="administrator" namespace="/afterlogin" extends="afterlogin">
+		<action name="userManagement" class="com.goodhope.goldselling.web.action.administrator.UserManagementAction">
+			<result type="chain" name="success">roleManagement</result>
+		</action>
+		<action name="roleManagement" class="com.goodhope.goldselling.web.action.administrator.RoleManagementAction">
+			<result type="chain" name="success">authorityManagement</result>
+		</action>
+
+		<action name="authorityManagement" class="com.goodhope.goldselling.web.action.administrator.AuthorityManagementAction">
+			<result type="freemarker" name="success">/WEB-INF/freemarker/afterlogin/userManagement.ftl</result>
+		</action>
+
+		<action name="addUser" class="com.goodhope.goldselling.web.action.administrator.AddUserAction">
+			<result type="freemarker" name="success">/WEB-INF/freemarker/afterlogin/addUser.ftl</result>
+		</action>
+		<action name="deleteUser" class="com.goodhope.goldselling.web.action.administrator.DeleteUserAction">
+			<result type="freemarker" name="success">/WEB-INF/freemarker/afterlogin/addUser.ftl</result>
+		</action>
+
+		<action name="editRole" class="com.goodhope.goldselling.web.action.administrator.EditRoleAction">
+			<result type="freemarker" name="success">/WEB-INF/freemarker/afterlogin/editRoleInit.ftl</result>
+		</action>
+		<action name="changeRole" method="editRoleMethod" class="com.goodhope.goldselling.web.action.administrator.EditRoleAction">
+			<result type="chain" name="success">userManagement</result>
+			<result type="chain" name="input">userManagement</result>
+		</action>
+
+		<action name="editVendorUser" class="com.goodhope.goldselling.web.action.administrator.EditVendorUserAction">
+			<result type="freemarker" name="success">/WEB-INF/freemarker/afterlogin/editVendorUser.ftl</result>
+		</action>
+		<action name="modifyVendorUser" class="com.goodhope.goldselling.web.action.administrator.ModifyVendorUserAction">
+			<result type="chain" name="success">vendorManagement</result>
+			<result type="chain" name="input">vendorManagement</result>
+		</action>
+		<action name="vendorManagement" class="com.goodhope.goldselling.web.action.administrator.VendorManagementAction">
+			<result type="freemarker" name="success">/WEB-INF/freemarker/afterlogin/vendorManagement.ftl</result>
+		</action>
+		<action name="addVendor" class="com.goodhope.goldselling.web.action.administrator.AddVendorAction">
+			<result type="freemarker" name="success">/WEB-INF/freemarker/afterlogin/addVendor.ftl</result>
+		</action>
+	</package>
+
+	<package name="operator" namespace="/afterlogin" extends="afterlogin">
+		<action name="serverSetting" class="com.goodhope.goldselling.web.action.operator.ServerSettingAction">
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/serverSetting.ftl</result>
+		</action>
+		<action name="deleteServer" class="com.goodhope.goldselling.web.action.operator.DeleteServerAction">
+			<result name="success" type="chain">serverSetting</result>
+		</action>
+		<action name="operatorUploadPrice" class="com.goodhope.goldselling.web.action.operator.UploadPriceAction">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/octet-stream,application/x-zip-compressed</param>
+				<param name="allowedExtensions">xls,xlsx</param>
+				<param name="maximumSize">2048000</param>
+			</interceptor-ref>
+			<interceptor-ref name="allStack" />
+			<result type="freemarker" name="success">/WEB-INF/freemarker/afterlogin/operatorUploadSuccess.ftl</result>
+			<result type="freemarker" name="input">/WEB-INF/freemarker/afterlogin/operatorUploadSuccess.ftl</result>
+		</action>
+		<action name="updateOperatorPrice" class="com.goodhope.goldselling.web.action.operator.UpdateOperatorPriceAction">
+			<result type="redirectAction" name="success">serverSetting</result>
+		</action>
+		<action name="operatorDownload" class="com.goodhope.goldselling.web.action.all.DownloadFileAction">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="myfile.xlsx"</param>
+				<param name="inputName">downloadFile</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="financial" namespace="/afterlogin" extends="afterlogin">
+		<action name="currencySetting" class="com.goodhope.goldselling.web.action.financial.CurrencySettingAction">
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/currencySetting.ftl</result>
+		</action>
+		<action name="queryOrder" class="com.goodhope.goldselling.web.action.financial.QueryOrderAction">
+			<result name="input" type="freemarker">/WEB-INF/freemarker/afterlogin/financialQueryOrder.ftl</result>
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/financialQueryOrder.ftl</result>
+			<result name="onOrderNumber" type="chain">financialOrderOnNumber</result>
+			<result name="onOrder" type="chain">financialOrderQuery</result>
+		</action>
+
+		<action name="financialOrderOnNumber" class="com.goodhope.goldselling.web.action.financial.FinancialOrderOnNumberAction">
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/financialQueryOrder.ftl</result>
+			<result name="input" type="freemarker">/WEB-INF/freemarker/afterlogin/financialQueryOrder.ftl</result>
+		</action>
+		<action name="financialOrderQuery" class="com.goodhope.goldselling.web.action.financial.FinancialOrderQueryAction">
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/financialQueryOrder.ftl</result>
+			<result name="input" type="freemarker">/WEB-INF/freemarker/afterlogin/financialQueryOrder.ftl</result>
+		</action>
+		<action name="balanceOrder" class="com.goodhope.goldselling.web.action.financial.BalanceOrderAction">
+			<result name="success" type="chain">queryOrder</result>
+		</action>
+		<action name="financialRefundment" class="com.goodhope.goldselling.web.action.financial.FinancialRefundmentAction">
+			<result name="success" type="chain">queryOrder</result>
+		</action>
+	</package>
+
+	<package name="vendor" namespace="/afterlogin" extends="afterlogin">
+		<action name="storageSetting" class="com.goodhope.goldselling.web.action.vendor.StorageSettingAction">
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/storageSetting.ftl</result>
+			<result name="input" type="freemarker">/WEB-INF/freemarker/afterlogin/storageSetting.ftl</result>
+		</action>
+		<action name="deleteStorage" class="com.goodhope.goldselling.web.action.vendor.DeleteStorageAction">
+			<result name="success" type="chain">storageSetting</result>
+		</action>
+		<action name="newOrder" class="com.goodhope.goldselling.web.action.vendor.NewOrderAction">
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/vendorOrderManagement.ftl</result>
+			<result name="input" type="freemarker">/WEB-INF/freemarker/afterlogin/vendorOrderManagement.ftl</result>
+			<interceptor-ref name="allStackWithoutWorkFlow"></interceptor-ref>
+
+		</action>
+		<action name="vendorOrderManagement" class="com.goodhope.goldselling.web.action.vendor.VendorOrderManagementAction">
+			<result name="success" type="chain">newOrder</result>
+			<result name="onOrderData" type="chain">vendorOrderOnDate</result>
+			<result name="onOrderState" type="chain">vendorOrderOnState</result>
+			<result name="onOrderNumber" type="chain">vendorOrderOnNumber</result>
+			<result name="input" type="chain">newOrder</result>
+		</action>
+
+		<action name="vendorOrderOnDate" class="com.goodhope.goldselling.web.action.vendor.VendorOrderOnDateAction">
+			<result name="success" type="chain">newOrder</result>
+			<result name="input" type="chain">newOrder</result>
+		</action>
+		<action name="vendorOrderOnState" class="com.goodhope.goldselling.web.action.vendor.VendorOrderOnStateAction">
+			<result name="success" type="chain">newOrder</result>
+			<result name="input" type="chain">newOrder</result>
+		</action>
+		<action name="vendorOrderOnNumber" class="com.goodhope.goldselling.web.action.vendor.VendorOrderOnNumberAction">
+
+			<result name="success" type="chain">newOrder</result>
+			<result name="input" type="chain">newOrder</result>
+		</action>
+		<action name="vendorUploadPrice" class="com.goodhope.goldselling.web.action.vendor.UploadPriceAction">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/octet-stream,application/x-zip-compressed</param>
+				<param name="allowedExtensions">xls,xlsx</param>
+				<param name="maximumSize">2048000</param>
+			</interceptor-ref>
+			<interceptor-ref name="allStack" />
+			<result type="freemarker" name="success">/WEB-INF/freemarker/afterlogin/vendorUploadSuccess.ftl</result>
+			<result type="freemarker" name="input">/WEB-INF/freemarker/afterlogin/vendorUploadSuccess.ftl</result>
+		</action>
+		<action name="updateVendorPrice" class="com.goodhope.goldselling.web.action.vendor.UpdateVendorPriceAction">
+			<result type="redirectAction" name="success">storageSetting</result>
+		</action>
+		<action name="vendorDownload" class="com.goodhope.goldselling.web.action.all.DownloadFileAction">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="contentDisposition">attachment;filename="myfile.xlsx"</param>
+				<param name="inputName">downloadFile</param>
+			</result>
+		</action>
+		<action name="acceptOrder" class="com.goodhope.goldselling.web.action.vendor.AcceptOrderAction">
+			<result name="success" type="redirectAction">vendorOrderManagement</result>
+		</action>
+		<action name="rejectOrder" class="com.goodhope.goldselling.web.action.vendor.RejectOrderAction">
+			<result name="success" type="chain">initDeliverFailure</result>
+		</action>
+		<action name="deliverFailure" class="com.goodhope.goldselling.web.action.vendor.DeliverFailureAction">
+			<result name="success" type="redirectAction">vendorOrderManagement</result>
+		</action>
+
+
+		<action name="initDeliverFailure" class="com.goodhope.goldselling.web.action.vendor.InitDeliverFailureAction">
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/initDeliverFailure.ftl</result>
+			<result name="input" type="freemarker">/WEB-INF/freemarker/afterlogin/empty.ftl</result>
+		</action>
+		<action name="uploadPictureForOrder" class="com.goodhope.goldselling.web.action.vendor.UploadPictureForOrderAction">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">image/png,image/gif,image/jpeg,image/pjpeg,image/x-png,image/x-xbitmap,image/x-xpixmap,image/tiff,image/x-ms-bmp,image/bmp</param>
+				<param name="allowedExtensions">png,gif,jpeg,jpg,bmp</param>
+				<param name="maximumSize">10240000</param>
+			</interceptor-ref>
+			<interceptor-ref name="allStack"></interceptor-ref>
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/showPicture.ftl</result>
+			<result name="input" type="freemarker">/WEB-INF/freemarker/afterlogin/initUploadPictureForOrder.ftl</result>
+		</action>
+		<action name="initUploadPictureForOrder" class="com.goodhope.goldselling.web.action.vendor.InitUploadPictureForOrderAction">
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/initUploadPictureForOrder.ftl</result>
+			<result name="input" type="freemarker">/WEB-INF/freemarker/afterlogin/empty.ftl</result>
+		</action>
+	</package>
+
+	<package name="customerservice" namespace="/afterlogin" extends="afterlogin">
+		<action name="customerServiceOrderManagement" class="com.goodhope.goldselling.web.action.customerservice.CustomerServiceOrderManagementAction">
+			<result name="input" type="freemarker">/WEB-INF/freemarker/afterlogin/customerServiceOrderManagement.ftl</result>
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/customerServiceOrderManagement.ftl</result>
+			<result name="onOrderNumber" type="chain">customerServiceOrderOnNumber</result>
+			<result name="onOrder" type="chain">customerServiceOrderQuery</result>
+		</action>
+		<action name="customerServiceOrderOnNumber" class="com.goodhope.goldselling.web.action.customerservice.CustomerServiceOrderOnNumberAction">
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/customerServiceOrderManagement.ftl</result>
+			<result name="input" type="freemarker">/WEB-INF/freemarker/afterlogin/customerServiceOrderManagement.ftl</result>
+		</action>
+		<action name="customerServiceOrderQuery" class="com.goodhope.goldselling.web.action.customerservice.CustomerServiceOrderQueryAction">
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/customerServiceOrderManagement.ftl</result>
+			<result name="input" type="freemarker">/WEB-INF/freemarker/afterlogin/customerServiceOrderManagement.ftl</result>
+		</action>
+		<action name="customerServiceAcceptOrder" class="com.goodhope.goldselling.web.action.customerservice.CustomerServiceAcceptOrderAction">
+			<result name="success" type="chain">customerServiceOrderManagement</result>
+			<result name="input" type="chain">customerServiceOrderManagement</result>
+		</action>
+		<action name="viewOrderPicture" class="com.goodhope.goldselling.web.action.customerservice.ViewOrderPictureAction">
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/customerServiceViewPicture.ftl</result>
+			<result name="input" type="freemarker">/WEB-INF/freemarker/afterlogin/customerServiceViewPicture.ftl</result>
+		</action>
+		<action name="validateSuccessOrder" class="com.goodhope.goldselling.web.action.customerservice.ValidateSuccessOrderAction">
+			<result name="success" type="chain">customerServiceOrderManagement</result>
+			<result name="input" type="chain">customerServiceOrderManagement</result>
+		</action>
+		<action name="customServiceRefundment" class="com.goodhope.goldselling.web.action.customerservice.CustomServiceRefundmentAction">
+			<result name="success" type="chain">customerServiceOrderManagement</result>
+			<result name="input" type="chain">customerServiceOrderManagement</result>
+		</action>
+		<action name="validateFaileOrder" class="com.goodhope.goldselling.web.action.customerservice.ValidateFaileOrderAction">
+			<result name="success" type="chain">customerServiceOrderManagement</result>
+			<result name="input" type="chain">customerServiceOrderManagement</result>
+		</action>
+
+		<action name="customerServiceInitDeliverFailure" class="com.goodhope.goldselling.web.action.customerservice.CustomerServiceInitDeliverFailureAction">
+			<result name="success" type="freemarker">/WEB-INF/freemarker/afterlogin/customerserviceInitDeliverFailure.ftl</result>
+			<result name="input" type="freemarker">/WEB-INF/freemarker/afterlogin/empty.ftl</result>
+		</action>
+
+		<action name="customerServiceDeliverFailure" class="com.goodhope.goldselling.web.action.customerservice.CustomServiceDeliverFailureAction">
+			<result name="success" type="redirectAction">customerServiceOrderManagement</result>
+		</action>
+		<action name="customerServiceReDeliver" class="com.goodhope.goldselling.web.action.customerservice.CustomerServiceReDeliverAction">
+			<result name="success" type="redirectAction">customerServiceOrderManagement</result>
+		</action>
+
+		<action name="customerServiceTransferOrder" class="com.goodhope.goldselling.web.action.customerservice.CustomerServiceTransferOrderAction">
+			<result name="success" type="chain">customerServiceOrderManagement</result>
+			<result name="input" type="chain">customerServiceOrderManagement</result>
+			<result name="init" type="freemarker">/WEB-INF/freemarker/afterlogin/customerServiceTransferOrder.ftl</result>
+		</action>
+	</package>
+
+</struts>

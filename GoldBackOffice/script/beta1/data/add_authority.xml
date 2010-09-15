@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/NewCrawler/dbchangelog-1.9.xsd">
+
+
+	<changeSet author="lbl/hrx" id="beta1/data/add_authority.xml">
+
+		<!--  用户管理===================================================================== -->
+		<insert tableName="authorities">
+			<column name="id" value="1"></column>
+			<column name="authorityname" value="用户管理"></column>
+			<column name="authorityuri" value="/afterlogin/userManagement"></column>
+			<column name="createtime" value="2010-07-13 10:00:00"></column>
+		</insert>
+		<insert tableName="roles_authorities">
+			<column name="roleid" value="1"></column><!-- 管理员 -->
+			<column name="authorityid" value="1"></column>
+		</insert>
+
+		<!--  设定价格===================================================================== -->
+		<insert tableName="authorities">
+			<column name="id" value="2"></column>
+			<column name="authorityname" value="设定价格"></column>
+			<column name="authorityuri" value="/afterlogin/serverSetting"></column>
+			<column name="createtime" value="2010-07-13 10:00:00"></column>
+		</insert>
+		<insert tableName="roles_authorities">
+			<column name="roleid" value="2"></column><!--  运营人员 -->
+			<column name="authorityid" value="2"></column>
+		</insert>
+
+		<!--  订单管理  （客服）===================================================================== -->
+		<insert tableName="authorities">
+			<column name="id" value="3"></column>
+			<column name="authorityname" value="订单管理"></column>
+			<column name="authorityuri" value="/afterlogin/customerServiceOrderManagement"></column>
+			<column name="createtime" value="2010-07-13 10:00:00"></column>
+		</insert>
+		<insert tableName="roles_authorities">
+			<column name="roleid" value="3"></column> <!-- 客服 -->
+			<column name="authorityid" value="3"></column>
+		</insert>
+
+		<!--  上传库存===================================================================== -->
+		<insert tableName="authorities">
+			<column name="id" value="4"></column>
+			<column name="authorityname" value="上传库存"></column>
+			<column name="authorityuri" value="/afterlogin/storageSetting"></column>
+			<column name="createtime" value="2010-07-13 10:00:00"></column>
+		</insert>
+		<insert tableName="roles_authorities">
+			<column name="roleid" value="4"></column> <!-- 供货商 -->
+			<column name="authorityid" value="4"></column>
+
+		</insert>
+		<!--  订单管理 （供货商）===================================================================== -->
+		<insert tableName="authorities">
+			<column name="id" value="5"></column>
+			<column name="authorityname" value="订单管理"></column>
+			<column name="authorityuri" value="/afterlogin/vendorOrderManagement"></column>
+			<column name="createtime" value="2010-07-13 10:00:00"></column>
+		</insert>
+		<insert tableName="roles_authorities">
+			<column name="roleid" value="4"></column> <!-- 供货商 -->
+			<column name="authorityid" value="5"></column>
+		</insert>
+
+		<!--  设定汇率===================================================================== -->
+		<insert tableName="authorities">
+			<column name="id" value="6"></column>
+			<column name="authorityname" value="设定汇率"></column>
+			<column name="authorityuri" value="/afterlogin/currencySetting"></column>
+			<column name="createtime" value="2010-07-13 10:00:00"></column>
+		</insert>
+		<insert tableName="roles_authorities">
+			<column name="roleid" value="5"></column> <!-- 财务 -->
+			<column name="authorityid" value="6"></column>
+		</insert>
+
+		<!-- 交易记录===================================================================== -->
+		<insert tableName="authorities">
+			<column name="id" value="7"></column>
+			<column name="authorityname" value="交易记录"></column>
+			<column name="authorityuri" value="/afterlogin/queryOrder"></column>
+			<column name="createtime" value="2010-07-13 10:00:00"></column>
+		</insert>
+		<insert tableName="roles_authorities">
+			<column name="roleid" value="5"></column> <!-- 财务 -->
+			<column name="authorityid" value="7"></column>
+		</insert>
+
+		<!--  修改密码 =================================================================== -->
+		<insert tableName="authorities">
+			<column name="id" value="8"></column>
+			<column name="authorityname" value="修改密码"></column>
+			<column name="authorityuri" value="/afterlogin/changePasswordInit"></column>
+			<column name="createtime" value="2010-07-13 10:00:00"></column>
+		</insert>
+		<insert tableName="roles_authorities">
+			<column name="roleid" value="1"></column>
+			<column name="authorityid" value="8"></column>
+		</insert>
+		<insert tableName="roles_authorities">
+			<column name="roleid" value="2"></column>
+			<column name="authorityid" value="8"></column>
+		</insert>
+		<insert tableName="roles_authorities">
+			<column name="roleid" value="3"></column>
+			<column name="authorityid" value="8"></column>
+		</insert>
+		<insert tableName="roles_authorities">
+			<column name="roleid" value="4"></column>
+			<column name="authorityid" value="8"></column>
+		</insert>
+		<insert tableName="roles_authorities">
+			<column name="roleid" value="5"></column>
+			<column name="authorityid" value="8"></column>
+		</insert>
+		
+		<!--  用户管理===================================================================== -->
+		<insert tableName="authorities">
+			<column name="id" value="9"></column>
+			<column name="authorityname" value="供应商列表"></column>
+			<column name="authorityuri" value="/afterlogin/vendorManagement"></column>
+			<column name="createtime" value="2010-07-13 10:00:00"></column>
+		</insert>
+		<insert tableName="roles_authorities">
+			<column name="roleid" value="1"></column><!-- 管理员 -->
+			<column name="authorityid" value="9"></column>
+		</insert>
+
+	</changeSet>
+
+</databaseChangeLog>

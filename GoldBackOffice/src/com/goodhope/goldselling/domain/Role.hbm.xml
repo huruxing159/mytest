@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.goodhope.goldselling.domain">
+	<class name="Role" table="roles">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">goldselling_id_sequence</param>
+			</generator>
+		</id>
+		<property name="roleName" />
+		<property name="roleShowName" />
+		<property name="createTime" />
+		<property name="description" />
+		<set name="users" table="users_roles" lazy="false">
+			<key column="roleid"></key>
+			<many-to-many class="User" column="userid"></many-to-many>
+		</set>
+		<set name="authorities" table="roles_authorities" lazy="false" order-by="authorityid">
+			<key column="roleid"></key>
+			<many-to-many class="Authority" column="authorityid"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

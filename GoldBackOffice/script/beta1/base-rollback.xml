@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/GoldBackOffice/script/dbchangelog-1.9.xsd">
+
+	<!-- new "include" must be  added  from beginning !please remember -->
+	<include file="orderfailreasons-rollback.xml" relativeToChangelogFile="true" />
+	<include file="timerwatch-rollback.xml" relativeToChangelogFile="true" />
+	<include file="data/add_users-rollback.xml" relativeToChangelogFile="true" />
+	<include file="inform_backoffices-rollback.xml" relativeToChangelogFile="true" />
+	<include file="moneybookers_records-rollback.xml" relativeToChangelogFile="true" />
+	<include file="paypal_records-rollback.xml" relativeToChangelogFile="true" />
+	<include file="orderpictures-rollback.xml" relativeToChangelogFile="true" />
+	<include file="orderrecords-rollback.xml" relativeToChangelogFile="true" />
+	<include file="storagelists-rollback.xml" relativeToChangelogFile="true" />
+	<include file="vendors-rollback.xml" relativeToChangelogFile="true" />
+	<include file="servers-rollback.xml" relativeToChangelogFile="true" />
+	<include file="data/add_currency-rollback.xml" relativeToChangelogFile="true" />
+	<include file="data/add_country-rollback.xml" relativeToChangelogFile="true" />
+	<include file="currencies-rollback.xml" relativeToChangelogFile="true" />
+	<include file="countries-rollback.xml" relativeToChangelogFile="true" />
+	<include file="orders-rollback.xml" relativeToChangelogFile="true" />
+	<include file="purchase_attemps-rollback.xml" relativeToChangelogFile="true" />
+	<include file="data/add_authority-rollback.xml" relativeToChangelogFile="true" />
+	<include file="data/add_role-rollback.xml" relativeToChangelogFile="true" />
+	<include file="roles_authorities-rollback.xml" relativeToChangelogFile="true" />
+	<include file="authorities-rollback.xml" relativeToChangelogFile="true" />
+	<include file="users_roles-rollback.xml" relativeToChangelogFile="true" />
+	<include file="roles-rollback.xml" relativeToChangelogFile="true" />
+	<include file="users-rollback.xml" relativeToChangelogFile="true" />
+	<include file="sequence-rollback.xml" relativeToChangelogFile="true" />
+</databaseChangeLog>

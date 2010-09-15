@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.goodhope.goldselling.domain">
+
+	<class name="OrderPicture" table="orderpictures">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">goldselling_id_sequence</param>
+			</generator>
+		</id>
+		<property name="location"></property>
+		<many-to-one name="order" column="orderid" class="Order"></many-to-one>
+
+	</class>
+
+</hibernate-mapping>

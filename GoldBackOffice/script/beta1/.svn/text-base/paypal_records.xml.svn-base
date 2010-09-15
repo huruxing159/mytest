@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/GoldBackOffice/script/dbchangelog-1.9.xsd">
+
+	<changeSet author="lbl/hrx" id="beta1/paypal_records.xml">
+		<createTable tableName="paypal_records">
+
+			<column name="id" type="numeric(25)" autoIncrement="true">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="paypal_token" type="varchar(255)"></column>
+			<column name="paypal_payer_id" type="varchar(255)"></column>
+			<column name="paypal_transaction_id" type="varchar(255)"></column>
+			<column name="create_time" type="timestamp"></column>
+
+		</createTable>
+
+	</changeSet>
+
+</databaseChangeLog>

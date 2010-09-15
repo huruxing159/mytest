@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/NewCrawler/dbchangelog-1.9.xsd">
+
+	<preConditions>
+		<tableExists tableName="authorities" />
+		<tableExists tableName="roles_authorities" />
+	</preConditions>
+
+	<changeSet author="lbl/hrx" id="beta1/data/add_authority-rollback.xml">
+		<sql>delete from roles_authorities where roleid=1 and authorityid=1</sql><!--role为管理员，authority为‘用户管理’  -->
+		<sql>delete from authorities where id=1</sql>
+
+		<sql>delete from roles_authorities where roleid=2 and authorityid=2</sql><!--role为运营人员，authority为‘上传价格’  -->
+		<sql>delete from authorities where id=2</sql>
+
+		<sql>delete from roles_authorities where roleid=3 and authorityid=3</sql><!--role为客服，authority为‘订单管理’  -->
+		<sql>delete from authorities where id=3</sql>
+
+		<sql>delete from roles_authorities where roleid=4 and authorityid=4</sql><!--role为供货商，authority为‘上传库存’  -->
+		<sql>delete from authorities where id=4</sql>
+
+		<sql>delete from roles_authorities where roleid=4 and authorityid=5</sql><!--role为供货商，authority为‘查询订单’  -->
+		<sql>delete from authorities where id=5</sql>
+
+		<sql>delete from roles_authorities where roleid=5 and authorityid=6</sql><!--role为财务，authority为‘设定汇率’  -->
+		<sql>delete from authorities where id=6</sql>
+
+		<sql>delete from roles_authorities where roleid=5 and authorityid=7</sql><!--role为财务，authority为‘查询交易’  -->
+		<sql>delete from authorities where id=7</sql>
+
+		<sql>delete from roles_authorities where roleid in(1,2,3,4,5) and authorityid=8</sql><!--role为all，authority为‘修改密码’  -->
+		<sql>delete from authorities where id=8</sql>
+
+
+	</changeSet>
+
+</databaseChangeLog>

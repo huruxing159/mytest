@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.goodhope.goldselling.domain">
+
+
+	<class name="Vendor" table="vendors">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">goldselling_id_sequence</param>
+			</generator>
+		</id>
+		<property name="name"></property>
+
+		<set name="users" table="vendor_users">
+			<key column="vendorid"></key>
+			<many-to-many column="userid" unique="true" class="User" lazy="false"></many-to-many>
+		</set>
+
+		<set name="storageLists" lazy="false" table="storagelists" order-by="serverid">
+			<key column="vendorid"></key>
+			<one-to-many class="StorageList" />
+		</set>
+		<set name="orderRecords" table="orderrecords" order-by="orderid">
+			<key column="vendorid"></key>
+			<one-to-many class="OrderRecord" />
+		</set>
+		<set name="orders" table="orders" order-by="id desc">
+			<key column="vendorid"></key>
+			<one-to-many class="Order" />
+		</set>
+	</class>
+
+</hibernate-mapping>

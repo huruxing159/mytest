@@ -1,0 +1,43 @@
+﻿/* $Id: jquery.popup.css 67 2008-01-22 08:54:37Z Bolik@xjgc.com $ */
+
+.popupPanel
+{
+  background-color: /*#cccc66*/ transparent;
+  position: absolute;
+  border: /*#0066cc thin solid*/ none;
+  _width: 10em;
+  min-width: 10em;
+  _height: 0em;
+  min-height: 1em;
+
+
+}
+
+.popupPanel a
+{
+  text-decoration: none;
+}
+.popupPanel a:link
+{
+/*  color: Blue;*/
+color:black;
+}
+.popupPanel a:visited
+{
+/*  color: purple;*/
+  color:black;
+  font-size :13px;
+
+}
+.popupPanel a:hover
+{
+  color: #FF7F50;
+}
+
+.popupController
+{
+/*  border-bottom: #cc0000 thin solid;
+*/
+ display:none;
+ visibility:hidden;
+}

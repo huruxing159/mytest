@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<http>
+		<intercept-url pattern="/afterlogin/jmesa*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/afterlogin/welcome*" access="ROLE_ADMINISTRATOR,ROLE_OPERATOR,ROLE_CUSTOMER_SERVICE,ROLE_VENDOR,ROLE_FINANCIAL" />
+		<intercept-url pattern="/afterlogin/logout*" access="ROLE_ADMINISTRATOR,ROLE_OPERATOR,ROLE_CUSTOMER_SERVICE,ROLE_VENDOR,ROLE_FINANCIAL" />
+		<intercept-url pattern="/afterlogin/changePassword*" access="ROLE_ADMINISTRATOR,ROLE_OPERATOR,ROLE_CUSTOMER_SERVICE,ROLE_VENDOR,ROLE_FINANCIAL" />
+		<intercept-url pattern="/afterlogin/orderDetails*" access="ROLE_ADMINISTRATOR,ROLE_OPERATOR,ROLE_CUSTOMER_SERVICE,ROLE_VENDOR,ROLE_FINANCIAL" />
+
+		<intercept-url pattern="/afterlogin/customerServiceReDeliver*" access="ROLE_CUSTOMER_SERVICE" />
+		<intercept-url pattern="/afterlogin/customerServiceInitDeliverFailure*" access="ROLE_CUSTOMER_SERVICE" />
+		<intercept-url pattern="/afterlogin/customerServiceDeliverFailure*" access="ROLE_CUSTOMER_SERVICE" />
+		<intercept-url pattern="/afterlogin/customServiceRefundment*" access="ROLE_CUSTOMER_SERVICE" />
+		<intercept-url pattern="/afterlogin/customerServiceTransferOrder*" access="ROLE_CUSTOMER_SERVICE" />
+		<intercept-url pattern="/afterlogin/validateFaileOrder*" access="ROLE_CUSTOMER_SERVICE" />
+		<intercept-url pattern="/afterlogin/validateSuccessOrder*" access="ROLE_CUSTOMER_SERVICE" />
+		<intercept-url pattern="/afterlogin/viewOrderPicture*" access="ROLE_CUSTOMER_SERVICE,ROLE_VENDOR" />
+		<intercept-url pattern="/afterlogin/customerServiceAcceptOrder*" access="ROLE_CUSTOMER_SERVICE" />
+		<intercept-url pattern="/afterlogin/customerServiceOrderManagement*" access="ROLE_CUSTOMER_SERVICE" />
+		<intercept-url pattern="/afterlogin/newOrder*" access="ROLE_VENDOR" />
+		<intercept-url pattern="/afterlogin/storageSetting*" access="ROLE_VENDOR" />
+		<intercept-url pattern="/afterlogin/uploadPictureForOrder*" access="ROLE_VENDOR" />
+		<intercept-url pattern="/afterlogin/initUploadPictureForOrder*" access="ROLE_VENDOR" />
+		<intercept-url pattern="/afterlogin/deleteStorage*" access="ROLE_VENDOR" />
+		<intercept-url pattern="/afterlogin/acceptOrder*" access="ROLE_VENDOR" />
+		<intercept-url pattern="/afterlogin/rejectOrder*" access="ROLE_VENDOR" />
+		<intercept-url pattern="/afterlogin/initDeliverFailure*" access="ROLE_VENDOR" />
+		<intercept-url pattern="/afterlogin/deliverFailure*" access="ROLE_VENDOR" />
+		<intercept-url pattern="/afterlogin/vendorOrderManagement*" access="ROLE_VENDOR" />
+		<intercept-url pattern="/afterlogin/vendorUploadPrice*" access="ROLE_VENDOR" />
+		<intercept-url pattern="/afterlogin/updateVendorPrice*" access="ROLE_VENDOR" />
+		<intercept-url pattern="/afterlogin/vendorDownload*" access="ROLE_VENDOR" />
+
+		<intercept-url pattern="/afterlogin/deleteServer*" access="ROLE_OPERATOR" />
+		<intercept-url pattern="/afterlogin/serverSetting*" access="ROLE_OPERATOR" />
+		<intercept-url pattern="/afterlogin/operatorUploadPrice*" access="ROLE_OPERATOR" />
+		<intercept-url pattern="/afterlogin/updateOperatorPrice*" access="ROLE_OPERATOR" />
+		<intercept-url pattern="/afterlogin/operatorDownload*" access="ROLE_OPERATOR" />
+
+		<intercept-url pattern="/afterlogin/financialRefundment*" access="ROLE_FINANCIAL" />
+		<intercept-url pattern="/afterlogin/balanceOrder*" access="ROLE_FINANCIAL" />
+		<intercept-url pattern="/afterlogin/queryOrder*" access="ROLE_FINANCIAL" />
+		<intercept-url pattern="/afterlogin/currencySetting*" access="ROLE_FINANCIAL" />
+		<intercept-url pattern="/afterlogin/addUser*" access="ROLE_ADMINISTRATOR" />
+		<intercept-url pattern="/afterlogin/userManagement*" access="ROLE_ADMINISTRATOR" />
+		<intercept-url pattern="/afterlogin/vendorManagement*" access="ROLE_ADMINISTRATOR" />
+		<intercept-url pattern="/afterlogin/modifyVendorUser*" access="ROLE_ADMINISTRATOR" />
+		<intercept-url pattern="/afterlogin/addVendor*" access="ROLE_ADMINISTRATOR" />
+		<intercept-url pattern="/afterlogin/editVendorUser*" access="ROLE_ADMINISTRATOR" />
+		<intercept-url pattern="/afterlogin/*" access="ROLE_ADMINISTRATOR" />
+		<form-login login-page="/login" authentication-failure-url="/login?message=loginParameterError" default-target-url="/afterlogin/welcome" always-use-default-target="true" />
+		<logout />
+		<remember-me />
+		<session-management invalid-session-url="/login">
+			<concurrency-control max-sessions="1" expired-url="/redirect2welcome" />
+		</session-management>
+	</http>
+
+	<authentication-manager>
+		<authentication-provider user-service-ref='userDao'>
+			<password-encoder hash="md5"></password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>

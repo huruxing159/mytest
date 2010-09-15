@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/GoldBackOffice/script/dbchangelog-1.9.xsd">
+
+	<include file="sequence.xml" relativeToChangelogFile="true" />
+	<include file="users.xml" relativeToChangelogFile="true" />
+	<include file="roles.xml" relativeToChangelogFile="true" />
+	<include file="users_roles.xml" relativeToChangelogFile="true" />
+	<include file="authorities.xml" relativeToChangelogFile="true" />
+	<include file="roles_authorities.xml" relativeToChangelogFile="true" />
+	<include file="data/add_role.xml" relativeToChangelogFile="true" />
+	<include file="data/add_authority.xml" relativeToChangelogFile="true" />
+	<include file="purchase_attemps.xml" relativeToChangelogFile="true" />
+	<include file="orders.xml" relativeToChangelogFile="true" />
+	<include file="countries.xml" relativeToChangelogFile="true" />
+	<include file="currencies.xml" relativeToChangelogFile="true" />
+	<include file="data/add_country.xml" relativeToChangelogFile="true" />
+	<include file="data/add_currency.xml" relativeToChangelogFile="true" />
+	<include file="servers.xml" relativeToChangelogFile="true" />
+	<include file="vendors.xml" relativeToChangelogFile="true" />
+	<include file="vendor_users.xml" relativeToChangelogFile="true" />
+	<include file="storagelists.xml" relativeToChangelogFile="true" />
+	<include file="orderrecords.xml" relativeToChangelogFile="true" />
+	<include file="orderpictures.xml" relativeToChangelogFile="true" />
+	<include file="paypal_records.xml" relativeToChangelogFile="true" />
+	<include file="moneybookers_records.xml" relativeToChangelogFile="true" />
+	<include file="inform_backoffices.xml" relativeToChangelogFile="true" />
+	<include file="data/add_users.xml" relativeToChangelogFile="true" />
+	<include file="timerwatch.xml" relativeToChangelogFile="true" />
+	<include file="orderfailreasons.xml" relativeToChangelogFile="true" />
+	<!-- new "include" must be added at last place -->
+
+</databaseChangeLog>

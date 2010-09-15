@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/GoldBackOffice/script/dbchangelog-1.9.xsd">
+
+	<changeSet author="lbl/hrx" id="beta1/moneybookers_records.xml">
+
+		<createTable tableName="moneybookers_records">
+			<column name="id" type="numeric(25)" autoIncrement="true">
+				<constraints primaryKey="true" />
+			</column>
+
+			<column name="merchant_id" type="varchar(255)"></column>
+			<column name="md5sig" type="varchar(255)"></column>
+			<column name="amount" type="varchar(255)"></column>
+			<column name="transaction_id" type="varchar(255)"></column>
+			<column name="pay_to_email" type="varchar(255)"></column>
+			<column name="mb_currency" type="varchar(255)"></column>
+			<column name="mb_amount" type="varchar(255)"></column>
+			<column name="mb_transaction_id" type="varchar(255)"></column>
+			<column name="status" type="varchar(255)"></column>
+			<column name="currency" type="varchar(255)"></column>
+			<column name="customer_id" type="varchar(255)"></column>
+			<column name="payment_type" type="varchar(255)"></column>
+			<column name="pay_from_email" type="varchar(255)"></column>
+			<column name="create_time" type="timestamp"></column>
+
+		</createTable>
+
+	</changeSet>
+
+</databaseChangeLog>

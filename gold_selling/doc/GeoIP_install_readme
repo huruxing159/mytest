@@ -1,0 +1,12 @@
+1) We need install geoip for ruby, in command line type 'gem install geoip';
+2) We also need geoip database. Download from 'http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz';
+and put this database in the root directory.
+ 
+require 'geoip'
+
+# ip = request.ip
+# country = GeoIP.new('GeoIP.dat').country(ip)
+# country_code = country[3]
+# puts "request ip    #{request.ip}"
+# puts "country is #{country.inspect}"
+# puts "country_code is #{country_code}"

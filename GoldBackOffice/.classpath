@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="WebRoot/WEB-INF/classes"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="lib" path="findbugs/lib/annotations.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/ant.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/asm-3.1.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/asm-analysis-3.1.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/asm-commons-3.1.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/asm-tree-3.1.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/asm-util-3.1.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/asm-xml-3.1.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/bcel.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/findbugs-ant.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/findbugs.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/jaxen-1.1.1.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/jdepend-2.9.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/jFormatString.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/jsr305.jar"/>
+	<classpathentry kind="lib" path="findbugs/lib/mysql-connector-java-5.1.7-bin.jar"/>
+	<classpathentry kind="lib" path="lib/src/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="lib/src/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="lib/src/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/src/commons-dbcp-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/src/commons-fileupload-1.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/src/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="lib/src/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/src/commons-pool-1.5.4.jar"/>
+	<classpathentry kind="lib" path="lib/src/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/src/freemarker-2.3.15.jar"/>
+	<classpathentry kind="lib" path="lib/src/hibernate3.jar"/>
+	<classpathentry kind="lib" path="lib/src/javassist-3.9.0.GA.jar"/>
+	<classpathentry kind="lib" path="lib/src/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/src/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="lib/src/ognl-2.7.3.jar"/>
+	<classpathentry kind="lib" path="lib/src/org.springframework.aop-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/src/org.springframework.asm-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/src/org.springframework.beans-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/src/org.springframework.context-3.0.3.RELEASE.jar" sourcepath="/Users/apple/jar/spring-framework-3.0.3.RELEASE/src/org.springframework.context-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/src/org.springframework.context.support-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/src/org.springframework.core-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/src/org.springframework.expression-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/src/org.springframework.jdbc-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/src/org.springframework.orm-3.0.3.RELEASE.jar" sourcepath="/Users/apple/jar/spring-framework-3.0.3.RELEASE/src/org.springframework.orm-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/src/org.springframework.transaction-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/src/org.springframework.web-3.0.3.RELEASE.jar" sourcepath="/Users/apple/jar/spring-framework-3.0.3.RELEASE/src/org.springframework.web-sources-3.0.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/src/postgresql-8.2-506.jdbc4.jar"/>
+	<classpathentry kind="lib" path="lib/src/sitemesh-2.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/src/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="lib" path="lib/src/slf4j-log4j12-1.5.2.jar"/>
+	<classpathentry kind="lib" path="lib/src/spring-security-config-3.0.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/src/spring-security-core-3.0.2.RELEASE.jar" sourcepath="/Users/apple/jar/spring-security-3.0.2.RELEASE/dist/spring-security-core-3.0.2.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="lib/src/spring-security-web-3.0.2.RELEASE.jar" sourcepath="/Users/apple/jar/spring-security-3.0.2.RELEASE/dist/spring-security-web-3.0.2.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="lib/src/struts2-core-2.1.8.1.jar" sourcepath="/Users/apple/jar/struts-2.1.8.1/src/core/src/main/java/org/apache/struts2/interceptor"/>
+	<classpathentry kind="lib" path="lib/src/struts2-spring-plugin-2.1.8.1.jar"/>
+	<classpathentry kind="lib" path="lib/src/xwork-core-2.1.6.jar" sourcepath="/Users/apple/Desktop/xwork-2.1.5/core/src/main/java/com"/>
+	<classpathentry kind="lib" path="lib/test/ant-contrib-1.0b3.jar"/>
+	<classpathentry kind="lib" path="lib/test/checkstyle-5.0.jar"/>
+	<classpathentry kind="lib" path="lib/test/emma_ant.jar"/>
+	<classpathentry kind="lib" path="lib/test/emma.jar"/>
+	<classpathentry kind="lib" path="lib/test/junit-4.4.jar"/>
+	<classpathentry kind="lib" path="lib/test/liquibase-1.9.5.jar"/>
+	<classpathentry kind="lib" path="lib/test/servlet-api.jar"/>
+	<classpathentry kind="lib" path="tomcat/bin/bootstrap.jar"/>
+	<classpathentry kind="lib" path="tomcat/bin/commons-daemon.jar"/>
+	<classpathentry kind="lib" path="tomcat/bin/tomcat-juli.jar"/>
+	<classpathentry kind="lib" path="tomcat/lib/annotations-api.jar"/>
+	<classpathentry kind="lib" path="tomcat/lib/catalina-ant.jar"/>
+	<classpathentry kind="lib" path="tomcat/lib/catalina-ha.jar"/>
+	<classpathentry kind="lib" path="tomcat/lib/catalina-tribes.jar"/>
+	<classpathentry kind="lib" path="tomcat/lib/catalina.jar"/>
+	<classpathentry kind="lib" path="tomcat/lib/el-api.jar"/>
+	<classpathentry kind="lib" path="tomcat/lib/jasper-el.jar"/>
+	<classpathentry kind="lib" path="tomcat/lib/jasper-jdt.jar"/>
+	<classpathentry kind="lib" path="tomcat/lib/jasper.jar"/>
+	<classpathentry kind="lib" path="tomcat/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="tomcat/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="tomcat/webapps/examples/WEB-INF/lib/jstl.jar"/>
+	<classpathentry kind="lib" path="tomcat/webapps/examples/WEB-INF/lib/standard.jar"/>
+	<classpathentry kind="lib" path="lib/src/jmesa-2.5.3.jar" sourcepath="/Users/apple/jar/jmesa-2.5.3/source"/>
+	<classpathentry kind="lib" path="lib/src/poi-3.6-20091214.jar"/>
+	<classpathentry kind="lib" path="lib/src/poi-ooxml-3.6-20091214.jar"/>
+	<classpathentry kind="lib" path="lib/test/jericho-html-3.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="tomcat/webapps/examples/jsp/plugin/applet"/>
+</classpath>

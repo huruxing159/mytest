@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/GoldBackOffice/script/dbchangelog-1.9.xsd">
+	<changeSet author="lbl/hrx" id="beta1/vendor_users.xml">
+		<createTable tableName="vendor_users">
+			<column name="id" type="numeric(20)" autoIncrement="true">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="vendorid" type="numeric(20)">
+				<constraints nullable="false" />
+			</column>
+			<column name="userid" type="numeric(20)">
+				<constraints nullable="false" />
+			</column>
+
+		</createTable>
+
+		<modifySql>
+			<replace replace="serial" with="integer DEFAULT nextval('goldselling_id_sequence') " />
+		</modifySql>
+
+	</changeSet>
+
+
+
+
+</databaseChangeLog>

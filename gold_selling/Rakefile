@@ -1,0 +1,97 @@
+require 'rake'
+require 'rake/testtask'
+require 'rake/rdoctask'
+require 'spec/rake/spectask'
+require 'sequel'
+require 'sequel_core'
+require 'sequel/extensions/inflector'
+require 'sequel/extensions/migration'
+require 'logger'
+require 'net/https'
+require 'date'
+
+
+root = File.expand_path(File.dirname(__FILE__))
+# connection_string = 'mysql://root@localhost/gold_selling'
+ connection_string="postgres://gold_selling:gold_selling@localhost/gold_selling"
+
+logger = Logger.new(File.join(root, 'log', "db#{Date.today}.log"))
+DB = Sequel.connect(connection_string, :loggers => [logger]) unless Object.const_defined?('DB')
+# Sequel::MySQL.default_engine = 'InnoDB'
+# Sequel::MySQL.default_charset = 'UTF8'
+# DB.execute(%Q{
+#   ALTER DATABASE gold_selling DEFAULT CHARACTER SET utf8
+# })
+
+task :default => [:unit_tests]
+
+desc "Run all tests"
+task :tests => [:unit_tests, :db_tests, :controller_tests]
+
+desc "Run all UNIT tests"
+Spec::Rake::SpecTask.new(:unit_tests) do |t|
+  t.spec_files = FileList['spec/lib/**/*_spec.rb']
+end
+
+desc "Run all DB tests"
+Spec::Rake::SpecTask.new(:db_tests) do |t|
+  t.spec_files = FileList['spec/db/**/*_spec.rb']
+end
+
+desc "Run all CONTROLLER tests"
+Spec::Rake::SpecTask.new(:controller_tests) do |t|
+  t.spec_files = FileList['spec/controllers/**/*_spec.rb']
+end
+
+namespace :db do
+  desc "Rebuild database with samples"
+  task :rebuild => [:clean, :sample_data]
+  
+  desc "Apply all migrations"
+  task :migrate do
+    version = Sequel::Migrator.run(DB, File.join('db', 'migrate'),:column=>:migrate_version,:table=>:schema_info_migrate)
+    puts "Migration updated to version #{version}"
+  end
+  
+  desc "Apply sample data"
+  task :sample_data => [:migrate] do
+    version = Sequel::Migrator.run(DB, File.join('db', 'sample_data'),:column=>:sample_version,:table=>:schema_info_sample)
+    puts "Migration updated to version #{version}"
+  end
+  
+  desc "Reverse all migrations"
+  task :un_migrate do
+    version = Sequel::Migrator.run(DB, File.join('db', 'migrate'), :target => 0)
+    puts "Migration reverted to version #{version}"
+  end
+  
+  desc "Create empty, naked database"
+  task :clean do
+    begin
+      `mysqladmin --user root --force drop gold_selling`
+    rescue ignore
+    end
+     `mysqladmin --user root create gold_selling`
+    puts "The database exists, devoid of all tables"
+  end
+  
+end
+
+namespace :run do
+
+  desc 'Execute with Shotgun for reload support'
+  task :shotgun do
+     `shotgun server.rb -p 4567 -o 192.168.15.199`
+  end
+end
+
+namespace :views do
+  desc 'rebuild livechat'
+  task :livechat do
+    hamlfile=File.join(root,"views","livechat.haml")
+    htmlfile=File.join(root,"views","livechat.html")
+    File.delete(hamlfile) if File.exists?(hamlfile)
+    system("html2haml #{htmlfile}  #{hamlfile}")
+  end
+  
+end

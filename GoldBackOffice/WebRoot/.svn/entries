@@ -1,0 +1,90 @@
+10
+
+dir
+1184
+svn://192.168.16.30/oa/trunk/GoldBackOffice/WebRoot
+svn://192.168.16.30/oa
+
+
+
+2010-09-10T09:21:17.059771Z
+1181
+pair48
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+72538d8e-ff4f-0410-aad9-bc6707da5143
+
+
+
+
+
+
+0
+
+WEB-INF
+dir
+
+css
+dir
+
+decorators
+dir
+
+galleria
+dir
+
+images
+dir
+
+js
+dir
+
+myfile1.xls
+file
+
+
+
+
+2010-07-26T06:33:16.000000Z
+f39b4dc7af7e063f526c1d30cd328d3f
+2010-07-26T01:33:43.907112Z
+901
+pair48
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+20992
+
+themes
+dir
+

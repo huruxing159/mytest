@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.goodhope.goldselling.domain">
+	<class name="Authority" table="authorities">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">goldselling_id_sequence</param>
+			</generator>
+		</id>
+		<property name="authorityName" />
+		<property name="authorityURI" />
+		<property name="createTime" />
+		<property name="description" />
+		<set name="roles" table="roles_authorities">
+			<key column="authorityid"></key>
+			<many-to-many class="Role" column="roleid"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

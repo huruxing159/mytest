@@ -1,0 +1,377 @@
+<project basedir="." name="GoldBackOffice">
+	<property file="build.properties" />
+
+	<path id="base.classpath">
+		<fileset dir="${src.lib.dir}" includes="**/*.jar" />
+		<fileset dir="${test.lib.dir}" includes="**/*.jar" />
+	</path>
+
+	<path id="test.classpath">
+		<pathelement location="${src.class.dir}" />
+		<fileset dir="${lib.dir}" includes="**/*.jar" />
+	</path>
+
+	<import file="${basedir}/version.build.xml" />
+
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath>
+			<pathelement location="${test.lib.dir}/ant-contrib-1.0b3.jar" />
+		</classpath>
+	</taskdef>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+
+	<target name="all" depends="compile.all,checkstyle,findbugs,run.junit.test" description="all" />
+
+	<!-- ========================compile===========================-->
+	<target name="compile.all" depends="clean,compile.src,emma.instrumented,compile.test" description="compile all" />
+
+	<macrodef name="compile">
+		<attribute name="srcdir" />
+		<attribute name="destdir" />
+		<attribute name="classpathid" />
+		<sequential>
+			<mkdir dir="@{destdir}" />
+			<javac srcdir="@{srcdir}" destdir="@{destdir}" encoding="UTF-8" source="1.6" debug="true">
+				<classpath refid="@{classpathid}" />
+				<compilerarg value="-Xlint:-unchecked" />
+				<compilerarg value="-Xlint:deprecation" />
+			</javac>
+		</sequential>
+	</macrodef>
+
+	<target name="compile.src">
+		<delete dir="${src.class.dir}" />
+		<mkdir dir="${src.class.dir}" />
+		<compile srcdir="${src.dir}" destdir="${src.class.dir}" classpathid="base.classpath" />
+		<copy todir="${src.class.dir}">
+			<fileset dir="${src.dir}">
+				<include name="**/*.hbm.xml" />
+				<include name="**/*-validation.xml" />
+			</fileset>
+		</copy>
+	</target>
+
+
+	<target name="compile.test">
+		<compile srcdir="${test.dir}" destdir="${test.class.dir}" classpathid="test.classpath" />
+	</target>
+	<!-- ========================compile===========================-->
+
+	<!-- ========================deploy============================-->
+	<target name="dist" depends="compile.src">
+		<delete dir="${basedir}/WebRoot/vendor_pictures">
+		</delete>
+		<mkdir dir="${basedir}/WebRoot/vendor_pictures" />
+		<if>
+			<available file="${tomcat.dir}/webapps/GoldSelling/vendor_pictures" type="dir">
+			</available>
+			<then>
+
+				<copy todir="${basedir}/WebRoot/vendor_pictures">
+					<fileset dir="${tomcat.dir}/webapps/GoldSelling/vendor_pictures">
+						<include name="**/*.*" />
+					</fileset>
+				</copy>
+			</then>
+		</if>
+
+		<delete dir="${tomcat.dir}/GoldSelling" />
+		<delete dir="${tomcat.dir}/webapps/GoldSelling" />
+		<delete file="${tomcat.dir}/webapps/GoldSelling.war" />
+		<war destfile="${tomcat.dir}/webapps/GoldSelling.war" basedir="${webroot.dir}" webxml="${webroot.dir}/WEB-INF/web.xml">
+			<classes dir="${src.class.dir}">
+			</classes>
+			<lib dir="${src.lib.dir}">
+			</lib>
+		</war>
+		<delete dir="${basedir}/WebRoot/vendor_pictures">
+		</delete>
+
+
+	</target>
+	<target name="force.deploy" depends="stop.tomcat,clean,compile.src,compile.test,dist,start.tomcat" description="force.deploy">
+	</target>
+	<target name="force.deploy.and.rebuildschema" depends="stop.tomcat,clean,compile.src,compile.test,rebuild.schemaAnddata,crawlServerData,dist,start.tomcat" description="force.deploy">
+	</target>
+	<target name="beta1.deploy" depends="stop.tomcat,clean,beta1.build,compile.src,dist,crawlServerData,start.tomcat" description="">
+	</target>
+	<target name="beta2.deploy" depends="stop.tomcat,clean,beta2.build,compile.src,dist,start.tomcat" description="">
+	</target>
+	<!-- ========================deploy============================-->
+
+	<!-- ========================check style======================-->
+	<taskdef resource="checkstyletask.properties" classpathref="base.classpath" />
+
+	<target name="checkstyle">
+		<mkdir dir="${report.dir}/checkstyle" />
+		<checkstyle config="${checkstyle.config}" failOnViolation="false" failureProperty="checkstyle.failure">
+			<formatter type="xml" tofile="${checkstyle.result}" />
+			<fileset dir="${src.dir}" includes="**/*.java" />
+		</checkstyle>
+		<xslt in="${checkstyle.result}" out="${checkstyle.report}" style="${checkstyle.report.style}" />
+		<fail if="checkstyle.failure" message="One or more files break check style,please check it..." />
+	</target>
+	<!-- ========================check style======================-->
+
+	<!-- ========================findbugs=========================-->
+	<path id="findbugs-classpath">
+		<fileset dir="${findbugs.home}" includes="lib/*.jar" />
+	</path>
+
+	<taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask" classpathref="findbugs-classpath" />
+
+	<target name="findbugs">
+		<mkdir dir="${findbugs.report.dir}" />
+		<findbugs home="${findbugs.home}" output="html" outputFile="${findbugs.report.dir}/findbugs-report.html" jvmargs="-Xmx512m" failonerror="true" reportlevel="low" warningsproperty="bugs.found">
+			<class location="${src.class.dir}" />
+			<auxClasspath>
+				<fileset dir="${lib.dir}">
+					<include name="**/*.jar" />
+				</fileset>
+			</auxClasspath>
+			<auxclasspath path="${findbugs.home}/lib/findbugs-ant.jar" />
+			<sourcePath path="${src.dir}" />
+		</findbugs>
+		<fail if="bugs.found" message="One or more bugs found.  See test output for details" />
+	</target>
+	<!-- =======================findbugs=========================-->
+
+
+	<!-- =======================emma=========================-->
+	<taskdef resource="emma_ant.properties" classpathref="base.classpath" />
+
+	<path id="emma.instr.src.ref">
+		<pathelement location="${emma.out.dir}" />
+	</path>
+
+	<target name="emma.instrumented">
+		<mkdir dir="${emma.out.dir}" />
+		<copy todir="${emma.out.dir}" overwrite="false">
+			<fileset dir="${src.class.dir}">
+				<include name="**/*.class" />
+			</fileset>
+			<fileset dir="${src.dir}">
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+		<emma enabled="${emma.enabled}">
+			<instr instrpathref="emma.instr.src.ref" mode="overwrite" metadatafile="${coverage.dir}/metadata.emma" merge="true" />
+		</emma>
+	</target>
+
+	<target name="emma.report">
+		<emma enabled="${emma.enabled}">
+			<report sourcepath="${src.dir}" metrics="method:80,block:90,line:80,class:100">
+				<fileset dir="${coverage.dir}">
+					<include name="*.emma" />
+				</fileset>
+				<txt outfile="${coverage.dir}/coverage.txt" />
+				<html outfile="${coverage.dir}/coverage.html" />
+			</report>
+		</emma>
+	</target>
+
+	<target name="emma.check">
+		<loadfile property="emma.output" srcFile="${coverage.dir}/coverage.html" />
+		<fail message="Your code coverage is too low.">
+			<condition>
+				<contains string="${emma.output}" substring='class="h"' casesensitive="false" />
+			</condition>
+		</fail>
+	</target>
+	<!-- =======================emma=========================-->
+
+	<!-- =======================junit test=========================-->
+	<path id="run.junit.tests.classpath.using.emma">
+		<pathelement path="${emma.out.dir}" />
+		<pathelement path="${test.class.dir}" />
+		<path refid="base.classpath" />
+	</path>
+
+	<target name="run.junit.test" depends="compile.all">
+		<mkdir dir="${report.dir}" />
+		<junit printsummary="on" haltonfailure="false" failureproperty="unit.tests.failed" showoutput="yes" reloading="false" fork="yes" forkmode="perBatch">
+			<classpath>
+				<path refid="run.junit.tests.classpath.using.emma" />
+			</classpath>
+			<formatter type="xml" />
+			<sysproperty key="log4j.configuration" value="log4j.properties" />
+			<sysproperty key="org.apache.commons.logging.Log" value="org.apache.commons.logging.impl.NoOpLog" />
+			<jvmarg value="-Demma.coverage.out.file=${coverage.dir}/coverage.emma" />
+			<jvmarg value="-Demma.coverage.out.merge=true" />
+			<batchtest todir="${report.dir}">
+				<fileset dir="${test.class.dir}">
+					<include name="**/*Test.*" />
+					<include name="**/Test*.*" />
+					<exclude name="**/ReportTest.*" />
+				</fileset>
+			</batchtest >
+		</junit>
+		<junitreport todir="${report.dir}">
+			<fileset dir="${report.dir}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${report.dir}" />
+		</junitreport>
+		<fail if="unit.tests.failed" message="One or more tests failed.  See test output for details" />
+		<antcall target="emma.report" />
+		<antcall target="emma.check" />
+	</target>
+	<!-- =======================junit test=========================-->
+
+	<!-- =======================liqui base=========================-->
+
+	<taskdef resource="liquibasetasks.properties">
+		<classpath refid="base.classpath" />
+	</taskdef>
+
+	<macrodef name="excuteScript">
+		<attribute name="dir" />
+		<attribute name="dropFirst" default="false" />
+		<sequential>
+			<migrateDatabase changeLogFile="@{dir}/script_suite.xml" driver="${database.driver}" url="${database.url}" username="${database.username}" password="${database.password}" dropFirst="@{dropFirst}" classpathref="base.classpath" />
+		</sequential>
+	</macrodef>
+
+	<target name="rebuild.schema">
+		<excuteScript dir="${script.dir}/before" dropFirst="true" />
+		<excuteScript dir="${script.dir}/beta" />
+	</target>
+
+	<target name="update.schema">
+		<excuteScript dir="${script.dir}/beta" dropFirst="false" />
+	</target>
+
+	<target name="refresh.test.data">
+		<excuteScript dir="${test.data.dir}" />
+	</target>
+
+	<!-- ================================= 
+          target: copy.ui.change              
+         ================================= -->
+	<target name="copy.ui.change" depends="" description="copy.ui.change">
+		<copydir dest="${tomcat.dir}/webapps/GoldSelling" src="${webroot.dir}" forceoverwrite="true">
+		</copydir>
+
+	</target>
+
+	<!-- tomcat相关target -->
+	<target name="start.tomcat">
+		<echo>
+            ${os.name}
+        </echo>
+		<if>
+			<or>
+				<os name="Linux" />
+				<os name="Mac OS X" />
+			</or>
+			<then>
+				<antcall target="start.tomcat.linux" />
+			</then>
+			<else>
+				<antcall target="start.tomcat.windows" />
+			</else>
+		</if>
+	</target>
+
+	<target name="stop.tomcat">
+		<if>
+			<or>
+				<os name="Linux" />
+				<os name="Mac OS X" />
+			</or>
+			<then>
+				<antcall target="stop.tomcat.linux" />
+			</then>
+			<else>
+				<antcall target="stop.tomcat.windows" />
+			</else>
+		</if>
+	</target>
+
+	<target name="start.tomcat.linux">
+		<chmod perm="777" dir="${tomcat.dir}" includes="**/*.sh">
+		</chmod>
+		<start command="startup.sh" />
+	</target>
+
+	<target name="stop.tomcat.linux">
+		<chmod perm="777" dir="${tomcat.dir}" includes="**/*.sh">
+		</chmod>
+		<stop command="shutdown.sh" />
+	</target>
+
+	<target name="start.tomcat.windows">
+		<start command="startup.bat" />
+	</target>
+
+	<target name="stop.tomcat.windows">
+		<stop command="shutdown.bat" />
+	</target>
+
+	<target name="restart.tomcat" depends="stop.tomcat,start.tomcat" description="restart tomcat" />
+
+	<macrodef name="start">
+		<attribute name="command" />
+		<sequential>
+			<if>
+				<not>
+					<socket server="localhost" port="${tomcat.listen.port}" />
+				</not>
+				<then>
+					<echo message="start tomcat..." />
+					<exec executable="${tomcat.dir}/bin/@{command}" spawn="true">
+						<env key="CATALINA_HOME" value="${tomcat.dir}" />
+					</exec>
+					<waitfor maxwait="10" maxwaitunit="minute" checkevery="2" checkeveryunit="second">
+						<and>
+							<socket server="localhost" port="${tomcat.listen.port}" />
+						</and>
+					</waitfor>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="stop">
+		<attribute name="command" />
+		<sequential>
+			<if>
+				<socket server="localhost" port="${tomcat.listen.port}" />
+				<then>
+					<echo message="stop tomcat..." />
+					<exec executable="${tomcat.dir}/bin/@{command}">
+						<env key="CATALINA_HOME" value="${tomcat.dir}" />
+					</exec>
+					<waitfor maxwait="10" maxwaitunit="minute" checkevery="2" checkeveryunit="second">
+						<not>
+							<socket server="localhost" port="${tomcat.listen.port}" />
+						</not>
+					</waitfor>
+					<echo message="stop tomcat succeed..." />
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+	<!-- tomcat相关target -->
+	<!-- ================================= 
+          target: 初始化 刷wow server 数据              
+         ================================= -->
+	<target name="crawlServerData" depends="compile.src" description="初始化 刷wow server 数据">
+		<java classname="com.goodhope.goldselling.service.ServerCrawlService" fork="true" spawn="true">
+			<classpath>
+				<path refid="base.classpath">
+				</path>
+				<path location="${src.class.dir}">
+				</path>
+				<path location="${webroot.dir}/WEB-INF/classes">
+				</path>
+			</classpath>
+		</java>
+	</target>
+
+</project>

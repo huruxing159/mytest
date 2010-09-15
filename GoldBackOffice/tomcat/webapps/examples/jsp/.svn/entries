@@ -1,0 +1,187 @@
+10
+
+dir
+1184
+svn://192.168.16.30/oa/trunk/GoldBackOffice/tomcat/webapps/examples/jsp
+svn://192.168.16.30/oa
+
+
+
+2010-07-09T09:30:28.890117Z
+819
+pair48
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+72538d8e-ff4f-0410-aad9-bc6707da5143
+
+cal
+dir
+
+chat
+dir
+
+checkbox
+dir
+
+colors
+dir
+
+dates
+dir
+
+error
+dir
+
+forward
+dir
+
+images
+dir
+
+include
+dir
+
+index.html
+file
+
+
+
+
+2010-09-14T00:48:46.000000Z
+5b8873aa9276e4dd726f6e1e1bbc1d8d
+2010-07-09T09:30:28.890117Z
+819
+pair48
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+16293
+
+jsp2
+dir
+
+jsptoserv
+dir
+
+num
+dir
+
+plugin
+dir
+
+security
+dir
+
+sessions
+dir
+
+simpletag
+dir
+
+snp
+dir
+
+source.jsp
+file
+
+
+
+
+2010-09-14T00:48:46.000000Z
+1658bcc86f2cc35a24b66862a81745cc
+2010-07-09T09:30:28.890117Z
+819
+pair48
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+952
+
+source.jsp.html
+file
+
+
+
+
+2010-09-14T00:48:46.000000Z
+7c61f1070d52689263de019adf830790
+2010-07-09T09:30:28.890117Z
+819
+pair48
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1003
+
+tagplugin
+dir
+
+xml
+dir
+

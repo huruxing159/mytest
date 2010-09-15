@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.goodhope.goldselling.domain">
+
+
+	<class name="PaypalRecord" table="paypal_records">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">goldselling_id_sequence</param>
+			</generator>
+		</id>
+		<property name="paypal_token"></property>
+		<property name="paypal_payer_id"></property>
+		<property name="paypal_transaction_id"></property>
+		<property name="create_time"></property>
+	</class>
+
+</hibernate-mapping>

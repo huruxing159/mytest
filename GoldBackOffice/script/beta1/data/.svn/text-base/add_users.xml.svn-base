@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/NewCrawler/dbchangelog-1.9.xsd">
+
+	<changeSet author="lbl/hrx" id="beta1/data/add_users.xml">
+
+		<!-- 添加管理员 ====================================================================-->
+		<insert tableName="users">
+			<column name="id" value="1"></column>
+			<column name="username" value="goodhope"></column>
+			<column name="password" value="8a997a8e870d2a5a4db83729b587c2c3"></column>
+			<column name="createtime" value="2010-08-02 10:00:00"></column>
+		</insert>
+		<insert tableName="users_roles">
+			<column name="userid" value="1"></column><!--this user's name is goodhope -->
+			<column name="roleid" value="1"></column><!--this role's name is ROLE_ADMINISTRATOR -->
+		</insert>
+
+
+		<!-- 添加运营========================================================================-->
+		<insert tableName="users">
+			<column name="id" value="2"></column>
+			<column name="username" value="operator1"></column>
+			<column name="password" value="8a997a8e870d2a5a4db83729b587c2c3"></column>
+			<column name="createtime" value="2010-08-02 10:00:00"></column>
+		</insert>
+		<insert tableName="users_roles">
+			<column name="userid" value="2"></column><!--this user's name is goodhope -->
+			<column name="roleid" value="2"></column><!--this role's name is ROLE_OPERATOR -->
+		</insert>
+		<!-- 添加客服========================================================================-->
+		<insert tableName="users">
+			<column name="id" value="3"></column>
+			<column name="username" value="customerservice1"></column>
+			<column name="password" value="8a997a8e870d2a5a4db83729b587c2c3"></column>
+			<column name="createtime" value="2010-08-02 10:00:00"></column>
+		</insert>
+		<insert tableName="users_roles">
+			<column name="userid" value="3"></column><!--this user's name is goodhope -->
+			<column name="roleid" value="3"></column><!--this role's name is ROLE_OPERATOR -->
+		</insert>
+		<insert tableName="users">
+			<column name="id" value="7"></column>
+			<column name="username" value="customerservice2"></column>
+			<column name="password" value="8a997a8e870d2a5a4db83729b587c2c3"></column>
+			<column name="createtime" value="2010-08-02 10:00:00"></column>
+		</insert>
+		<insert tableName="users_roles">
+			<column name="userid" value="7"></column><!--this user's name is goodhope -->
+			<column name="roleid" value="3"></column><!--this role's name is ROLE_OPERATOR -->
+		</insert>
+
+		<!-- 添加供货商========================================================================-->
+		<insert tableName="users"><!-- 供货商1================================================-->
+			<column name="id" value="4"></column>
+			<column name="username" value="vendor1"></column>
+			<column name="password" value="8a997a8e870d2a5a4db83729b587c2c3"></column>
+			<column name="createtime" value="2010-08-02 10:00:00"></column>
+		</insert>
+		<insert tableName="users_roles">
+			<column name="userid" value="4"></column><!--this user's name is vendor -->
+			<column name="roleid" value="4"></column><!--this role's name is ROLE_SUPPLIER -->
+		</insert>
+
+		<insert tableName="vendors">
+			<column name="id" value="1"></column>
+			<column name="name" value="vendor_1"></column>
+		</insert>
+		<insert tableName="vendor_users">
+			<column name="id" value="1"></column>
+			<column name="vendorid" value="1"></column>
+			<column name="userid" value="4"></column>
+
+		</insert>
+		<insert tableName="users"><!-- 供货商2================================================-->
+			<column name="id" value="6"></column>
+			<column name="username" value="vendor2"></column>
+			<column name="password" value="8a997a8e870d2a5a4db83729b587c2c3"></column>
+			<column name="createtime" value="2010-08-02 10:00:00"></column>
+		</insert>
+		<insert tableName="users_roles">
+			<column name="userid" value="6"></column><!--this user's name is vendor -->
+			<column name="roleid" value="4"></column><!--this role's name is ROLE_SUPPLIER -->
+		</insert>
+
+		<insert tableName="vendors">
+			<column name="id" value="2"></column>
+			<column name="name" value="vendor_2"></column>
+		</insert>
+		<insert tableName="vendor_users">
+			<column name="id" value="2"></column>
+			<column name="vendorid" value="2"></column>
+			<column name="userid" value="6"></column>
+
+		</insert>
+
+		<!-- 添加财务 ====================================================================-->
+		<insert tableName="users">
+			<column name="id" value="5"></column>
+			<column name="username" value="financial"></column>
+			<column name="password" value="8a997a8e870d2a5a4db83729b587c2c3"></column>
+			<column name="createtime" value="2010-08-02 10:00:00"></column>
+		</insert>
+		<insert tableName="users_roles">
+			<column name="userid" value="5"></column><!--this user's name is goodhope -->
+			<column name="roleid" value="5"></column><!--this role's name is ROLE_FINANCIAL -->
+		</insert>
+
+
+	</changeSet>
+
+
+</databaseChangeLog>

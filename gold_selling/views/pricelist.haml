@@ -1,0 +1,81 @@
+!!! Strict
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+
+  %head
+    %title Instant WOW Gold Online
+    %meta{ :"http-equiv" => "X-UA-Compatible", :content => "IE=EmulateIE7" }
+    %meta{ :"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8" }
+    %link{ :href => 'stylesheets/site.css', :media => 'all', :rel => 'stylesheet', :type => 'text/css' }
+  
+  %body
+    .results-a
+      .right
+        Select Currency
+        %a{ :href => "javascript:moneytype('usd');",:class=>'moneytypeclass' } $
+        %a{ :href => "javascript:moneytype('gbp');",:class=>'moneytypeclass' } £
+        %a{ :href => "javascript:moneytype('eur');",:class=>'moneytypeclass' } €
+      
+      %table
+        %thead
+          %th
+          %th Amount
+          %th Was
+          %th Now
+          %th Price per Gold
+        %tbody
+          -for offer in price_list.offers
+            %tr
+              %td
+                %input{ :type => 'radio', :name => 'goldamount', :value => offer.amount }
+              %td= NumberFormater.format(offer.amount.to_s)
+              %td
+                %del= offer.old_price ? offer.old_price.show : 'n/a'
+              %td.moneytd= offer.price.show
+              %td= offer.price_per_gold.show(7)
+    .results-b
+      .note
+        Currently we have
+        %b
+          .server_gold_amount=serverGoldAmount 
+        Gold
+        on this server
+      .field2
+        .title
+          %label{:for => "amount"} Select Amount Of Gold
+        .input
+          %select#amount
+            %option{:value=>0}
+            -for offer in price_list.offers
+              %option{:value=>offer.amount}="#{NumberFormater.format(offer.amount.to_s)}      Gold" 
+            -
+      .field2
+        .title
+          %label{:for => "price"} Price
+        .input.inline
+          %select#price{:name=>'concurrency'}
+            %option{:value=>'usd'} $
+            %option{:value=>'gbp'} £
+            %option{:value=>'eur'} €
+        %big#detailmoney 
+      .field2
+        Can't find the product amount you want on the list?
+        %br/
+        %br/
+        %span.input
+          %input{:type => "checkbox",:name=>"want_custom_amount",:value=>'want_custom'}/
+          %b Try our Customized Quotation Calculator
+        .custom_amount_class
+          %input#a.onlynumber_text{:type => "textfield",:name=>'custom_gold_amount'}/
+          %br
+          %label{:for => "price"} Price
+          %select#customprice
+            %option{:value=>'usd'} $
+            %option{:value=>'gbp'} £
+            %option{:value=>'eur'} €
+          %big#customdetailmoney
+          .processing
+  
+   
+    
+          
+                      

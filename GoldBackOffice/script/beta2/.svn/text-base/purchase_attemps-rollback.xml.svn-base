@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/NewCrawler/dbchangelog-1.9.xsd">
+
+	<changeSet author="lbl/hrx" id="beta2/purchase_attemps-rollback.xml">
+		<dropColumn tableName="purchase_attemps" columnName="auction_item_name" />
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="baseDao" class="com.goodhope.goldselling.persistence.hibernate.BaseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="userDao" class="com.goodhope.goldselling.persistence.hibernate.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="roleDao" class="com.goodhope.goldselling.persistence.hibernate.RoleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="authorityDao" class="com.goodhope.goldselling.persistence.hibernate.AuthorityDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="currencyDao" class="com.goodhope.goldselling.persistence.hibernate.CurrencyDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="serverDao" class="com.goodhope.goldselling.persistence.hibernate.ServerDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="vendorDao" class="com.goodhope.goldselling.persistence.hibernate.VendorDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="orderRecordDao" class="com.goodhope.goldselling.persistence.hibernate.OrderRecordDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="storageDao" class="com.goodhope.goldselling.persistence.hibernate.StorageDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="orderDao" class="com.goodhope.goldselling.persistence.hibernate.OrderDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="informBackofficeDao" class="com.goodhope.goldselling.persistence.hibernate.InformBackofficeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="timerWatchDao" class="com.goodhope.goldselling.persistence.hibernate.TimerWatchDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+
+</beans>
+

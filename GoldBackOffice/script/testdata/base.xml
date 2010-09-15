@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/NewCrawler/dbchangelog-1.9.xsd">
+	<!--
+
+		<include file="beta1/addTestUser.xml" relativeToChangelogFile="true" /> <include file="beta1/addServer.xml" relativeToChangelogFile="true" /> <include file="beta1/addStorageList.xml" relativeToChangelogFile="true" /> <include file="beta1/addOrder.xml" relativeToChangelogFile="true" />
+	-->
+
+</databaseChangeLog>

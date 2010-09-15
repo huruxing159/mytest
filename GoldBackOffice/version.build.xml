@@ -1,0 +1,66 @@
+<project>
+	<property file="${basedir}/WebRoot/WEB-INF/classes/datasource.properties" />
+	<property file="build.properties" />
+	<path id="base.classpath">
+		<fileset dir="${src.lib.dir}" includes="**/*.jar" />
+		<fileset dir="${test.lib.dir}" includes="**/*.jar" />
+	</path>
+	<taskdef resource="liquibasetasks.properties">
+		<classpath refid="base.classpath" />
+	</taskdef>
+
+	<macrodef name="executeScript">
+		<attribute name="dir" />
+		<attribute name="changLogFile" default="base.xml" />
+		<attribute name="dropFirst" default="false" />
+		<sequential>
+			<migrateDatabase changeLogFile="@{dir}/@{changLogFile}" driver="${database.driver}" url="${database.url}" username="${database.username}" password="${database.password}" dropFirst="@{dropFirst}" classpathref="base.classpath">
+			</migrateDatabase>
+		</sequential>
+	</macrodef>
+
+	<!-- ================================= 
+          target: rebuild.schemaAnddata              
+         ================================= -->
+	<target name="rebuild.schemaAnddata" depends="beta1.build,testdata,addTestdata" description="description">
+
+	</target>
+	<target name="addTestdata" depends="compile.all">
+		<java classname="com.goodhope.goldselling.AddTestData">
+			<classpath>
+				<pathelement location="${basedir}/WebRoot/WEB-INF/classes" />
+				<pathelement location="${src.class.dir}" />
+				<pathelement location="${test.class.dir}" />
+			</classpath>
+			<classpath refid="base.classpath" />
+		</java>
+		<echo>add test data</echo>
+	</target>
+
+
+
+	<target name="beta1.build" description="beta1">
+		<executeScript dir="${script.dir}" dropfirst="true" />
+		<executeScript dir="${script.dir}/beta1" />
+	</target>
+
+	<target name="beta1.rollback" description="beta1.rollback">
+		<executeScript dir="${script.dir}/beta1" changLogFile="base-rollback.xml" />
+		<sql driver="${database.driver}" url="${database.url}" userid="${database.username}" password="${database.password}" src="${script.dir}/beta1/rollback.sql" classpathref="base.classpath" />
+	</target>
+	<target name="beta2.build" description="beta2">
+		<executeScript dir="${script.dir}" dropfirst="false" />
+		<executeScript dir="${script.dir}/beta2" />
+	</target>
+
+	<target name="beta2.rollback" description="beta1.rollback">
+		<executeScript dir="${script.dir}/beta2" changLogFile="base-rollback.xml" />
+		<sql driver="${database.driver}" url="${database.url}" userid="${database.username}" password="${database.password}" src="${script.dir}/beta2/rollback.sql" classpathref="base.classpath" />
+	</target>
+
+
+	<target name="testdata" description="testdata">
+		<executeScript dir="${script.dir}/testdata" />
+	</target>
+
+</project>

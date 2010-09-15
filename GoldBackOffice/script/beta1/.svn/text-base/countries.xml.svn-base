@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/GoldBackOffice/script/dbchangelog-1.9.xsd">
+
+
+	<changeSet author="lbl/hrx" id="beta1/countries.xml">
+		<createTable tableName="countries">
+
+			<column name="id" type="numeric(20)" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(255)"></column>
+			<column name="created_at" type="timestamp"></column>
+			<column name="updated_at" type="timestamp"></column>
+		</createTable>
+
+
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/GoldBackOffice/script/dbchangelog-1.9.xsd">
+	<changeSet author="lbl/hrx" id="beta1/purchase_attemps.xml">
+		<createTable tableName="purchase_attemps">
+
+			<column name="id" type="integer" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="gh_transaction_id" type="varchar(255)"></column>
+			<column name="region" type="varchar(255)"></column>
+			<column name="faction" type="varchar(255)"></column>
+			<column name="server" type="varchar(255)"></column>
+			<column name="character" type="varchar(255)"></column>
+			<column name="trade_method" type="varchar(255)"></column>
+			<column name="gold_amount" type="numeric(20)"></column>
+			<column name="price" type="numeric(20,8)"></column>
+			<column name="unit_price" type="numeric(20,8)"></column>
+			<column name="concurrency" type="varchar(255)"></column>
+			<column name="payment_method" type="varchar(255)"></column>
+			<column name="payment_method_id" type="numeric(20)"></column>
+			<column name="create_time" type="TIMESTAMP"></column>
+		</createTable>
+		<modifySql>
+			<replace replace="serial" with="integer DEFAULT nextval('goldselling_id_sequence') " />
+		</modifySql>
+	</changeSet>
+
+</databaseChangeLog>

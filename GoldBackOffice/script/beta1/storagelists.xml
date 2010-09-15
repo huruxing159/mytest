@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/GoldBackOffice/script/dbchangelog-1.9.xsd">
+
+	<changeSet author="lbl/hrx" id="beta1/storagelists.xml">
+		<createTable tableName="storagelists">
+			<column name="id" type="numeric(20)" autoIncrement="true">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="vendorid" type="numeric(20)"></column>
+			<column name="serverid" type="numeric(20)"></column>
+			<column name="price" type="numeric(20,8)"></column>
+			<column name="amount" type="numeric(20)"></column>
+
+		</createTable>
+
+
+	</changeSet>
+
+
+</databaseChangeLog>

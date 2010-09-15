@@ -1,0 +1,9 @@
+i found that  use "dyn-web code" need a license!!!!  
+
+A license is required for all but personal use of this code
+
+// See Terms of Use at www.dyn-web.com/business/terms.php
+// OK to remove after purchasing a license or if using on a personal site.
+
+the warning code in dw_tooltip.js  now i comment the "alert box"
+if for bussiness use  please  purchase a license

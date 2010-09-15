@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/NewCrawler/dbchangelog-1.9.xsd">
+
+	<preConditions>
+		<tableExists tableName="countries" />
+	</preConditions>
+	<changeSet author="lbl/hrx" id="beta1/data/add_country-rollback.xml">
+		<sql>delete from countries where id=2</sql>
+		<sql>delete from countries where id=1</sql>
+	</changeSet>
+</databaseChangeLog>

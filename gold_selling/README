@@ -1,0 +1,72 @@
+This is the GloPort front-end system, designed to facilitate clients creating specifications sufficient to create sample products.  There is an extremely high order conversion rate for clients reaching the sample stage (>50%).
+
+The front end is written in Ruby using Sinatra/Haml/Sass for the Web page display, and Sequel library for persistence.  It uses MySQL as the database engine.
+
+To run a demonstration of this product:
+1) Install needed gems; this includes ImageMagic that must be compiled.  For Snow Leopard OS X, 
+    Google for the setup script to do that from GitHub.
+2) Create a local database schema called china_b2b_development
+3) Run the migration scripts from Rake, including creating sample data:
+    rake db:rebuild
+4) Start up Sinatra from the root of the project
+    ruby server.rb
+5) Web pages will be served at URL:
+    http://localhost:4567
+    
+Good luck!
+
+
+
+
+
+
+
+
+
+deploy:
+
+
+1.To install Zlib development headers:
+   Please run yum install zlib-devel as root.
+
+ * To install OpenSSL development headers:
+   Please run yum install openssl-devel as root.
+
+ * To install GNU Readline development headers:
+   Please run yum install readline-devel as root.
+
+yum install postgresql-devel.x86_64
+
+2.download ruby enterprise edition 				       http://www.rubyenterpriseedition.com/download.html
+Extract it:
+
+tar xzvf ruby-enterprise-X.X.X.tar.gz
+
+Run the installer (completely safe, none of your system files will be touched!):
+
+./ruby-enterprise-X.X.X/installer
+
+3.install rubygem
+gem install rack
+gem install sinatra
+gem install sequel
+gem install haml
+gem install pg
+
+3.Make Phusion Passenger  use Ruby Enterprise Edition instead of regular Ruby 
+Open a terminal, and type:
+
+   gem install passenger
+
+Type:
+
+   passenger-install-apache2-module
+
+Or, if you want to install the Nginx version instead:
+
+   passenger-install-nginx-module
+
+And follow the instructions.
+
+
+

@@ -1,0 +1,124 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title Instant WoW Goldmine
+    %meta{:content => "IE=EmulateIE7", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %link{:href => "stylesheets/site.css", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "js/google_user_interact.js", :type => "text/javascript"}
+        
+  %body.why-trust-us
+    #wrapper
+      %a#logo{:href => "/", :title => "Home"}
+        %img{:alt => "Instant WOW Gold Online", :src => "images/logo.png"}/
+      %ul#menu
+        %li
+          %a{:href => "/"} Buy Wow Gold
+        %li
+          %a{:href => "why-trust-us.html"} Why Trust Us?
+        %li
+          %a.active{:href => "contact-us.html"} Contact Us
+      %br{:style => "clear:both"}/
+      #main
+        %h1 Payment Success 
+        %br/
+        Your Order NO : 
+        %font#orderID{:color=>'red' ,:size=>'4'}=purchase_attemp.gh_transaction_id
+        %br/
+        %br/
+        Amount Of Gold : 
+        =NumberFormater.format(purchase_attemp.gold_amount.to_i.to_s)
+        %br/
+        Your Server : 
+        =purchase_attemp.server
+        %br/
+        Your Faction : 
+        =purchase_attemp.faction
+        %br/
+        Your Character Name: 
+        %font{:color=>'red' ,:size=>'4'}=purchase_attemp.character
+        %br/
+        Trade Method: 
+        =purchase_attemp.trade_method
+        %br/
+        %input{:name => "price", :type => "hidden",:value=>purchase_attemp.price.to_f}/
+        %input{:name => "unit_price", :type => "hidden",:value=>purchase_attemp.unit_price.to_f}/
+        %input{:name => "gold_amount", :type => "hidden",:value=>purchase_attemp.gold_amount.to_i}/
+        %br/
+        -if purchase_attemp.trade_method == "In-game mail"   then
+          =haml :in_game_mail
+        -else
+          =haml :face_to_face,:locals=>{:place=>TradePlaceHelper.send(purchase_attemp.faction.downcase)}
+        %br/
+        %br/
+        %br/
+        We are accessible 24 hours a day, 7 days a week. The fastest way to get hold of us is to use the
+        %a{:href => "#"} LiveChat
+        system. You will be connected to one of our team members who can help with most queries.
+        
+        If you prefer, you can email us at
+        %a{:href => "#"} support@InstantWoWGoldmine.com
+        and we will get back to as soon as we can.
+      #side
+        .side-a
+          %h3 Got any questions?
+          Why not chat to a member of our LiveChat team right now? They can immediately answer any questions or concerns you have.
+          =haml :livechat
+        .side-b
+          .top
+          %ul
+            %li.safe
+              %h4 WoW Account Safe Guaranteed
+              %p We use totally legal in-game techniques to earn the gold we sell. This keeps your account safe and secure.
+            %li.instant
+              %h4 Instant Delivery
+              %p Our comprehensive stock control system allows us to guarantee the fastest delivery times available.
+            %li.secure
+              %h4 Secure Payment
+              %p We use industry standard payment systems like PayPal which ensure your details are safe and secure.
+            %li.save
+              %h4 Lowest Price
+              %p The best way for us to make more money is if you come back! That’s why we guarantee low prices and high security.
+  
+    =haml :footer
+    :javascript
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-18389330-1']);
+          _gaq.push(['_trackPageview']);
+          _gaq.push(['_addTrans',
+            '#{purchase_attemp.gh_transaction_id}' , // order ID - required
+            'instantwowgoldmine',  // affiliation or store name
+            '#{purchase_attemp.price.to_f.send(purchase_attemp.concurrency.downcase).in(Currency.get_currency_by_name("usd")).amount}',          // total - required
+         ]);
+
+           // add item might be called for every item in the shopping cart
+           // where your ecommerce engine loops through each item in the cart and
+           // prints out _addItem for each
+          _gaq.push(['_addItem',
+            '#{purchase_attemp.gh_transaction_id}' ,          // order ID - required
+            'wowgold',           // SKU/code - required
+            '#{purchase_attemp.gold_amount.to_i} gold',        // product name
+            '#{purchase_attemp.faction}-#{purchase_attemp.server}',   // category or variation
+            '#{purchase_attemp.unit_price.to_f.send(purchase_attemp.concurrency.downcase).in(Currency.get_currency_by_name("usd")).amount}',            // unit price - required
+            '#{purchase_attemp.gold_amount.to_i}'              // quantity - required
+          ]);
+          _gaq.push(['_trackTrans']); //submits transaction to the Analytics servers
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+    :javascript
+            /*  */
+            var google_conversion_id = 1003035648;
+            var google_conversion_language = "en";
+            var google_conversion_format = "2";
+            var google_conversion_color = "ffffff";
+            var google_conversion_label = "SAN2CJix4AEQgLik3gM";
+            var google_conversion_value = 0;
+            /*  */
+    %script{:src => "http://www.googleadservices.com/pagead/conversion.js", :type => "text/javascript"}
+    %noscript
+      %div{:style => "display:inline;",}
+        %img{:alt => "", :height => "1", :src => "http://www.googleadservices.com/pagead/conversion/1003035648/?label=SAN2CJix4AEQgLik3gM&amp;guid=ON&amp;script=0", :style => "border-style:none;", :width => "1"}/
+

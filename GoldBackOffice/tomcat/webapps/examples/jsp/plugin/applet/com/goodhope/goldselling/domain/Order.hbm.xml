@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.goodhope.goldselling.domain">
+
+	<class name="Order" table="orders">
+
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">goldselling_id_sequence</param>
+			</generator>
+		</id>
+		<property name="createTime"></property>
+		<property name="balanceTime"></property>
+		<property name="acceptTime"></property>
+		<property name="deliverTime"></property>
+		<property name="vendorUnitPrice"></property>
+		<property name="state"></property>
+		<many-to-one name="purchaseAttemp" class="PurchaseAttemp" unique="true" column="purchase_attemp_id" lazy="false">
+		</many-to-one>
+
+		<set name="pictures" table="orderpictures" order-by="id">
+			<key column="orderid"></key>
+			<one-to-many class="OrderPicture" />
+		</set>
+
+		<list name="failReason" table="orderfailreasons">
+			<key column="orderid" ></key>
+			<list-index column="list_order"></list-index>
+			<one-to-many class="FailReason" />
+		</list>
+
+		<set name="orderRecords" table="orderrecords" order-by="vendorid">
+			<key column="orderid"></key>
+			<one-to-many class="OrderRecord" />
+		</set>
+		<many-to-one name="currentVendor" class="Vendor" column="vendorid"></many-to-one>
+		<many-to-one name="customerService" class="User" column="customerserviceid"></many-to-one>
+	</class>
+
+</hibernate-mapping>

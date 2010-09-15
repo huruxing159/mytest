@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/NewCrawler/dbchangelog-1.9.xsd">
+
+
+	<changeSet author="lbl/hrx" id="beta1/data/add_country.xml">
+		<!-- 美服 -->
+		<insert tableName="countries">
+			<column name="id" value="1"></column>
+			<column name="name" value="US"></column>
+			<column name="created_at" value="2010-07-16 00:00:00"></column>
+			<column name="updated_at" value="2010-07-16 00:00:00"></column>
+		</insert>
+		<!-- 欧服 -->
+		<insert tableName="countries">
+			<column name="id" value="2"></column>
+			<column name="name" value="EU"></column>
+			<column name="created_at" value="2010-07-16 00:00:00"></column>
+			<column name="updated_at" value="2010-07-16 00:00:00"></column>
+		</insert>
+
+
+
+	</changeSet>
+</databaseChangeLog>

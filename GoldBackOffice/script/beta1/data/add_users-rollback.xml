@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/NewCrawler/dbchangelog-1.9.xsd">
+
+	<changeSet author="lbl/hrx" id="beta1/data/add_users-rollback.xml">
+		<sql>delete from users_roles where userid=1;delete from users where id=1</sql><!-- 管理员 -->
+		<sql> delete from users_roles where userid=2;delete from users where id=2</sql>
+		<sql>delete from users_roles where userid=3;delete from users where id=3</sql>
+		<sql>delete from vendor_users where userid=4;delete from users_roles where userid=4;delete from users where id=4</sql>
+		<sql>delete from users_roles where userid=5;delete from users where id=5</sql>
+		<sql>delete from vendor_users where userid=6;delete from users_roles where userid=6;delete from users where id=6</sql>
+		<sql>delete from users_roles where userid=7;delete from users where id=7</sql>
+	</changeSet>
+
+
+</databaseChangeLog>

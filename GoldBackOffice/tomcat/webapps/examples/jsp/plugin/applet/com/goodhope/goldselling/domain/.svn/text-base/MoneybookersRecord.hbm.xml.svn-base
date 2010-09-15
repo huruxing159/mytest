@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.goodhope.goldselling.domain">
+	<class name="MoneybookersRecord" table="moneybookers_records">
+		<id name="id">
+			<generator class="sequence">
+				<param name="sequence">goldselling_id_sequence</param>
+			</generator>
+		</id>
+		<property name="merchant_id"></property>
+		<property name="md5sig"></property>
+		<property name="amount"></property>
+		<property name="transaction_id"></property>
+		<property name="pay_to_email"></property>
+		<property name="mb_currency"></property>
+		<property name="mb_amount"></property>
+		<property name="mb_transaction_id"></property>
+		<property name="status"></property>
+		<property name="currency"></property>
+		<property name="customer_id"></property>
+		<property name="payment_type"></property>
+		<property name="pay_from_email"></property>
+		<property name="create_time"></property>
+
+	</class>
+</hibernate-mapping>

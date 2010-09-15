@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/GoldBackOffice/script/dbchangelog-1.9.xsd">
+
+	<changeSet author="lbl/hrx" id="beta1/inform_backoffices.xml">
+
+
+		<createTable tableName="inform_backoffices">
+			<column name="id" type="integer" autoIncrement="true">
+				<constraints primaryKey="true" />
+			</column>
+			<column name="orderid" type="integer">
+				<constraints unique="true" nullable="false" />
+			</column>
+		</createTable>
+		<modifySql>
+			<replace replace="serial" with="integer DEFAULT nextval('goldselling_id_sequence') " />
+		</modifySql>
+	</changeSet>
+
+
+</databaseChangeLog>

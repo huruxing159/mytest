@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 platform:/resource/NewCrawler/dbchangelog-1.9.xsd">
+
+	<changeSet author="lbl/hrx" id="beta1/data/add_currency.xml">
+		<insert tableName="currencies">
+			<column name="id" value="1"></column>
+			<column name="label" value="RMB"></column>
+			<column name="symbol" value="¥"></column>
+			<column name="scaling_factor" value="1"></column>
+
+		</insert>
+		<insert tableName="currencies">
+			<column name="id" value="2"></column>
+			<column name="label" value="GBP"></column>
+			<column name="symbol" value="£"></column>
+			<column name="scaling_factor" value="10"></column>
+
+		</insert>
+		<insert tableName="currencies">
+			<column name="id" value="3"></column>
+			<column name="label" value="USD"></column>
+			<column name="symbol" value="$"></column>
+			<column name="scaling_factor" value="6.5"></column>
+
+		</insert>
+		<insert tableName="currencies">
+			<column name="id" value="4"></column>
+			<column name="label" value="EUR"></column>
+			<column name="symbol" value="€"></column>
+			<column name="scaling_factor" value="6.8"></column>
+
+		</insert>
+
+
+	</changeSet>
+
+</databaseChangeLog>
